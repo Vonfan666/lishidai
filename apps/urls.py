@@ -18,6 +18,7 @@ from django.urls import path,include
 from  django.conf.urls import url
 from  apps.views import login
 urlpatterns = [
-
+    url(r'index/',login.index,name='index'),
     url(r'login/',login.login,name='login'),
+
 ]

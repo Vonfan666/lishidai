@@ -4,25 +4,112 @@
     {% load staticfiles %}
     <meta charset="UTF-8">
     <title>接口测试平台</title>
-    <style>
-        .center{
 
-            text-align: center;
+    <style>
+
+        body{
+            width: 100%;
+            height: 100%;
+{#            background: url({% static 'files/image/banner1.jpg' %}) no-repeat;#}
+        }
+        .center-header{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            top: 200px;
             height: 500px;
+            width: 100%;
 
         }
-         .phone{
+        .center{
 
-             width: 50px;
-         }
+            position: absolute;
+            height: 300px;
+            width: 300px;
+            display: flex;
+            justify-content: center;
+            border: 2px solid  white;
+
+
+
+
+        }
+
+        .login-click{
+            position: absolute;
+            color: #f5f5dc;
+            background-color: #409eff;
+            border: 2px solid #409eff;
+            border-radius: 3px;
+            width: 187px;
+            height: 37px;
+            left: 25px;
+
+        }
+        .phone{
+            border: 1px solid #dcdfe6;
+            background-color: #ffffff;
+            border-radius: 3px;
+        }
+        #phone{
+            height: 35px;
+            border: 0 solid ;
+            border-left: 2px solid #dcdfe6;
+        }
+        .from{
+            position: absolute;
+            top: 60px;
+        }
+        .active{
+            display: none;
+
+        }
     </style>
 </head>
 <body>
-    <div  class="center">
-        <form method="post" action="{% url 'login' %}" enctype="application/x-www-form-urlencoded">
-            <p><input placeholder="" class="phone" value="账号" readonly="readonly"><input placeholder='请输入账号'></p>
-            <p><input placeholder='请输入密码'></p>
-        </form>
+    <div class="center-header">
+        <p class="error active"  style="color: red">提示：arg.errorMassage</p>
+        <div  class="center">
+            <form class="from"  action="{% url 'index' %}" method="POST" >
+
+                <p class="phone">&#12288账号&#12288<input type="text" id="phone" name="phone" placeholder='请输入账号'></p>
+                <p class="phone">&#12288密码&#12288<input type="password" id="phone" name="pwd" placeholder='请输入密码' ></p>
+{#                <p><input class="login-click" value="登录" type="submit"></p>#}
+                <p><input class="login-click" value="登录" type="button"></p>
+            </form>
+        </div>
     </div>
 </body>
+<script src="{% static 'js/jquery-3.1.1.js' %}"></script>
+<script src="{% static 'js/login-js.js' %}"></script>
+<script>
+
+    $(function () {
+
+
+        eventCommission('.phone','#phone');
+        deleteErrorMessage(".from");
+
+    });
+    $('.login-click').click(function () {
+        $.ajax({
+            'url':"{% url 'login' %}",
+            'type':'POST',
+            'dataType':'json',
+            'data':$('.from').serialize(),
+            success:function (arg) {
+                console.log(arg);
+                console.log(arg.errorMassage);
+                $('.error').html('提示：'+arg.errorMassage);
+                errorMessage(arg.errorMassage);
+
+            }
+
+        })
+    })
+
+
+
+
+</script>
 </html>
