@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding:utf-8 -*-
+#author=von-fan
 from   django.shortcuts  import  redirect,render_to_response,render,HttpResponse
 import  json
 from  apps.lib import fromInvalid

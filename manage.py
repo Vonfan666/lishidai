@@ -1,4 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
+# -*- coding:utf-8 -*-
+#author=von-fan
 """Django's command-line utility for administrative tasks."""
 import os
 import sys

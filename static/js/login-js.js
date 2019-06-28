@@ -1,3 +1,4 @@
+
 /**
  * Created by Administrator on 2019-06-26.
  */
@@ -23,6 +24,3 @@
             $(this).children('input').focus()
         })
     }
-
-
-

@@ -12,6 +12,10 @@
     <script src="{% static 'plugins/ALicon/iconfont.js' %}"></script>
 
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
         .left{
             position: fixed;
             display: flex;
@@ -21,27 +25,40 @@
             justify-content: center;
             color: burlywood;
         }
+        .left-all{
+            position: relative;
+            top: 50px;
+        }
+        .left-one dl{
+            margin: 20px 0;
+        }
+        .left-one dl dd{
+            position: relative;
+            left: 30px;
+            margin: 20px 0;
+{#            display: none;#}
+        }
+        .active{
+            display: none;
+        }
+
     </style>
 
 </head>
 
 <body>
+<div>
     <div  class="left">
         <div class="left-all">
-            <div class="icon-menu-fill">1111</div>
-            <span class="icon-report-fill">222222</span>
-            <div class="icon-arrowBottom-fill">3333</div>
-            <span class="icon-menu-fill">444</span>
+
             <div class="left-one">
                 <dl>
-                    <dt>
-                        接口文档
-                    </dt>
+                    <dt> 接口文档 <span></span></dt>
                 </dl>
             </div>
             <div class="left-one">
                 <dl>
-                    <dt>变量管理<dt>
+                    <dt> 变量管理 <span></span></dt>
                     <dd>环境变量</dd>
                     <dd>全局变量</dd>
                 </dl>
@@ -49,44 +66,60 @@
             </div>
             <div class="left-one">
                 <dl>
-                    <dt>SQL 管理</dt>
+                    <dt> SQL管理 <span></span></dt>
+                    <dd>环境变量</dd>
+                    <dd>全局变量</dd>
                 </dl>
 
             </div>
             <div class="left-one">
                 <dl>
-                    <dt>用例管理</dt>
+                    <dt> 用例管理 <span></span></dt>
                 </dl>
 
             </div>
             <div class="left-one">
                 <dl>
-                    <dt>环境管理</dt>
+                    <dt> 环境管理 <span></span></dt>
                 </dl>
 
             </div>
             <div class="left-one">
                 <dl>
-                    <dt>定时任务</dt>
+                    <dt> 定时任务 <span></span></dt>
                 </dl>
 
             </div>
             <div class="left-one">
                 <dl>
-                    <dt>权限管理</dt>
+                    <dt> 权限管理 <span></span></dt>
                 </dl>
-
             </div>
         </div>
-
     </div>
-
-
+</div>
 </body>
 
-
-
 <script>
+    //给二级dd标签添加display=none 隐藏起来
+    $('.left-one dl dd').addClass("active");
+
+    $('.left-one dl dt').addClass('icon iconfont icon-menu-fill');
+    $('.left-one dl dt span').addClass('icon iconfont icon-arrowBottom-fill');
+
+    $('.left-one dt').click(function () {
+        var cls=$(this).children('span').attr('class');
+        console.log(cls)
+        if (cls=="icon iconfont icon-arrowBottom-fill"){
+            $(this).children('span').attr('class','icon iconfont icon-arrowTop-fill');
+             $(this).siblings().removeClass("active")
+
+        }else {
+              $(this).children('span').attr('class','icon iconfont icon-arrowBottom-fill');
+              $(this).siblings().addClass("active")
+        }
+    })
+
 
 </script>
 

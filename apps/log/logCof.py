@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding:utf-8 -*-
+#author=von-fan
 import logging, os, time
 
 
