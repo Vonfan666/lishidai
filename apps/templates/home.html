@@ -3,19 +3,92 @@
 <head>
     {% load staticfiles %}
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>接口测试平台</title>
+    <script src="{% static 'js/jquery-3.1.1.js' %}"></script>
+    <script src="{% static 'js/login-js.js' %}"></script>
+    <link  href="{% static 'plugins/bootstrap/css/bootstrap.css' %}" type="text/css">
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'plugins/ALicon/iconfont.css' %}" type="text/css">
+    <script src="{% static 'plugins/ALicon/iconfont.js' %}"></script>
+
+    <style>
+        .left{
+            position: fixed;
+            display: flex;
+            background-color: #545c64;
+            height: 100%;
+            width: 180px;
+            justify-content: center;
+            color: burlywood;
+        }
+    </style>
+
 </head>
+
 <body>
     <div  class="left">
         <div class="left-all">
-            <dl>
-                <dt>文档</dt>
-                <dd>文档1</dd>
-            </dl>
+            <div class="icon-menu-fill">1111</div>
+            <span class="icon-report-fill">222222</span>
+            <div class="icon-arrowBottom-fill">3333</div>
+            <span class="icon-menu-fill">444</span>
+            <div class="left-one">
+                <dl>
+                    <dt>
+                        接口文档
+                    </dt>
+                </dl>
+            </div>
+            <div class="left-one">
+                <dl>
+                    <dt>变量管理<dt>
+                    <dd>环境变量</dd>
+                    <dd>全局变量</dd>
+                </dl>
 
+            </div>
+            <div class="left-one">
+                <dl>
+                    <dt>SQL 管理</dt>
+                </dl>
+
+            </div>
+            <div class="left-one">
+                <dl>
+                    <dt>用例管理</dt>
+                </dl>
+
+            </div>
+            <div class="left-one">
+                <dl>
+                    <dt>环境管理</dt>
+                </dl>
+
+            </div>
+            <div class="left-one">
+                <dl>
+                    <dt>定时任务</dt>
+                </dl>
+
+            </div>
+            <div class="left-one">
+                <dl>
+                    <dt>权限管理</dt>
+                </dl>
+
+            </div>
         </div>
+
     </div>
+
+
 </body>
-<script src="{% static 'js/jquery-3.1.1.js' %}"></script>
-<script src="{% static 'js/login-js.js' %}"></script>
+
+
+
+<script>
+
+</script>
+
+
 </html>

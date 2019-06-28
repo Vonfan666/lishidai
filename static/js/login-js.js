@@ -2,6 +2,9 @@
  * Created by Administrator on 2019-06-26.
  */
     // 返回字段不会空则给出提示
+
+
+
     function errorMessage(a) {
        if(a!='null'){
         $('.error').removeClass('active')

@@ -21,7 +21,7 @@ def  login(req):
             if  obj:
                 print(obj,obj[0])
                 if req.POST.get('pwd')==obj[0]["pwd"]:
-                    data={'msg':'登录成功','statu':200,'errorMassage':'null'}
+                    data={'msg':'登录成功','status':200,'errorMassage':'null'}
                 else:
                     data['errorMassage']='您输入的密码有误！'
             else:
@@ -37,3 +37,7 @@ def  login(req):
             a=json.dumps(data)
             return HttpResponse(a)
 
+
+
+def  home(req):
+    return  render_to_response('home.html')
