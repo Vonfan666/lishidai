@@ -10,47 +10,19 @@
     <script src="{% static 'plugins/bootstrap/js/bootstrap.js' %}"></script>
     <link rel="stylesheet" href="{% static 'plugins/ALicon/iconfont.css' %}" type="text/css">
     <script src="{% static 'plugins/ALicon/iconfont.js' %}"></script>
-
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        .left{
-            position: fixed;
-            display: flex;
-            background-color: #545c64;
-            height: 100%;
-            width: 180px;
-            justify-content: center;
-            color: burlywood;
-        }
-        .left-all{
-            position: relative;
-            top: 50px;
-        }
-        .left-one dl{
-            margin: 20px 0;
-        }
-        .left-one dl dd{
-            position: relative;
-            left: 30px;
-            margin: 20px 0;
-{#            display: none;#}
-        }
-        .active{
-            display: none;
-        }
-
-    </style>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 
 </head>
 
 <body>
-<div>
+<div class="all">
     <div  class="left">
         <div class="left-all">
-
+            <div class="left-one">
+                <dl>
+                    <dt> 项目列表 <span></span></dt>
+                </dl>
+            </div>
             <div class="left-one">
                 <dl>
                     <dt> 接口文档 <span></span></dt>
@@ -97,31 +69,55 @@
             </div>
         </div>
     </div>
+
+    <div class="right">
+        <div class="right-head">
+            <div class="right-head-1">
+                <div class="right-head-1-left">
+                    <span class="openLeft icon iconfont icon-icon-test5" value="1"></span>
+                </div>
+                <div class="right-head-1-right">
+                    <div class="icon iconfont icon-icon-test1 userSetting"></div>
+                    <div class="userName">admin</div>
+                    <div>
+                    </div>
+                    <div class="userImage"></div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="projectListName">
+            <p>项目列表</p>
+        </div>
+        <div class="rightListSearch">
+            <div class="inp">
+                <form class="fm" action="#" method="GET">
+                    <div class="el-input">
+                        <input type="text" placeholder="请输入项目名称" >
+                        <span class="active icon iconfont icon-cross "></span>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="inp-button">
+                        <input type="button" value="搜索">
+                        <input type="button" value="新增">
+                    </div>
+        </div>
+        <div class="rightList">111</div>
+    </div>
 </div>
-</body>
 
+
+</body >
+<script src="{% static 'js/home.js' %}"></script>
 <script>
-    //给二级dd标签添加display=none 隐藏起来
-    $('.left-one dl dd').addClass("active");
 
-    $('.left-one dl dt').addClass('icon iconfont icon-menu-fill');
-    $('.left-one dl dt span').addClass('icon iconfont icon-arrowBottom-fill');
-
-    $('.left-one dt').click(function () {
-        var cls=$(this).children('span').attr('class');
-        console.log(cls)
-        if (cls=="icon iconfont icon-arrowBottom-fill"){
-            $(this).children('span').attr('class','icon iconfont icon-arrowTop-fill');
-             $(this).siblings().removeClass("active")
-
-        }else {
-              $(this).children('span').attr('class','icon iconfont icon-arrowBottom-fill');
-              $(this).siblings().addClass("active")
-        }
-    })
-
+        acceptInp(".el-input input")
+        removeInp(".el-input .icon",".el-input input")
 
 </script>
-
 
 </html>

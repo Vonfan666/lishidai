@@ -1,0 +1,165 @@
+*{
+            margin: 0;
+            padding: 0;
+        }
+
+        .left{
+            position: fixed;
+            display: flex;
+            background-color: #545c64;
+            height: 100%;
+            width: 180px;
+            justify-content: center;
+            color: burlywood;
+        ;
+        }
+        .left-all{
+            position: relative;
+            top: 50px;
+        }
+        .left-one dl{
+            margin: 20px 0;
+        }
+        .left-one dl dd{
+            position: relative;
+            left: 30px;
+            margin: 20px 0;
+        }
+        .active{
+            display: none;
+        }
+
+
+
+
+        .right{
+
+            height: 100%;
+            margin-left: 200px;
+            overflow: hidden;
+            /*border: 5px solid blue;*/
+            margin-right: 20px;
+        }
+                .right-head{
+                    height: 50px;
+                    /*background-color: #545c64;*/
+
+                }
+                            .right-head-1{
+
+                                height: 50px;
+                                background-color: #545c64;
+                                color: white;
+                            }
+                                     .right-head-1-left{
+
+                                            display: flex;
+                                            height: 50px;
+                                            float: left;
+
+                                    }
+                                              .right-head-1-left  .openLeft{
+
+                                                  font-size: 30px;
+                                                  margin: auto;
+                                                  margin-left: 10px;
+
+                                              }
+
+                                     .right-head-1-right{
+                                        display: flex;
+                                        height: 50px;
+                                        width: 150px;
+                                        float: right;
+
+                                    }
+                                                .userImage{
+                                                    background-image: url("/static/files/image/banner1.jpg");
+                                                    /*background-repeat: repeat;*/
+                                                    width: 40px;
+                                                    height: 40px;
+                                                    background-size: 40px 40px;
+                                                    border-radius: 50%;
+                                                    margin: auto;
+                                                            }
+                                                .userName{
+                                                    margin: auto;
+                                                }
+                                                .userSetting {
+                                                    /*background-color: red;*/
+                                                    font-size: 30px;
+                                                    margin: auto;
+                                                }
+
+                .projectListName{
+                    position: relative;
+                    margin-top: 15px;
+                    width: 100%;
+                    height: 50px;
+                    overflow: hidden;
+                }
+                .projectListName p{
+                    position: absolute;
+                    bottom: 5px;
+                }
+                .rightListSearch {
+
+                    display: flex;
+                    background-color: #e5e5e5;
+                    height: 80px;
+
+                }
+
+                        .inp{
+                            display: flex;
+                            margin: auto 15px;
+                            background-color: #ffffff;
+                            height: 40px;
+                            width: 211px;
+                            border: 2px solid #dcdfe6;
+                            border-radius: 6px;
+                        }
+                            .el-input{
+                                display: inline-block;
+                            }
+                                .el-input input{
+                                    height: 40px;
+                                    width: 150px;
+                                    padding: 0 15px;
+                                    display: inline-block;
+                                    border: 0;
+                                    outline: none;
+
+                                }
+
+                                .el-input .icon{
+                                    width: 10px;
+                                    height: 10px;
+                                }
+
+
+                               .inp-button{
+                                   margin: auto 0;
+
+                               }
+
+                                .inp-button input{
+                                    height: 40px;
+                                    width: 60px;
+                                    border: 0;
+                                    border-radius: 5px;
+                                    background-color: #545c64;
+                                    color: white;
+                                    /*letter-spacing: 10px; !*中文字符间的间距*!*/
+                                    outline: none;
+                                }
+
+
+
+
+
+            .rightList{
+                background-color: #e54c3d;
+                height: 100%;
+
+            }
