@@ -75,6 +75,7 @@
     function removeInp(removeEle,inpEle) {
         $(removeEle).click(function () {
             $(inpEle).val("");
+            $(inpEle).siblings().addClass("active")
         })
     }
 
