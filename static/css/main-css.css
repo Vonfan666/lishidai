@@ -1,0 +1,12 @@
+ .click-bottom{
+     padding: 9px  16px;
+     border: 1px solid #545c64;
+     background-color: #545c64;
+     color: white;
+     border-radius: 3px;
+ }
+ .click-bottom:hover{
+     background-color: #444f64;
+ }
+
+
