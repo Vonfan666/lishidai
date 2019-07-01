@@ -15,18 +15,39 @@
         }
         .left-all{
             position: relative;
-            top: 50px;
+            /*top: 50px;*/
+            width: 100%;
+            text-align: center;
+            /*display: flex;*/
         }
-        .left-one dl{
-            margin: 20px 0;
+
+        .left-one dt{
+            padding: 20px 0;
         }
+
+        .left-one dt:hover{
+            background-color: #434a50;
+
+        }
+
         .left-one dl dd{
             position: relative;
-            left: 30px;
-            margin: 20px 0;
+            padding: 10px 0;
+
+        }
+
+        .left-one dl  dd:hover{
+            background-color: #434a50;
         }
         .active{
             display: none;
+        }
+        .left-one{
+            /*padding: 15px 0;*/
+        }
+        .left-one:hover{
+            cursor: pointer;
+            /*background-color: #434a50;*/
         }
 
 
@@ -145,6 +166,7 @@
                                }
                                .inp-button input:hover{
                                     background-color: #444f64;
+                                    cursor:pointer;
                                 }
 
                                 .inp-button input{

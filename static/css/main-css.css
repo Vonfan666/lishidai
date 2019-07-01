@@ -3,10 +3,11 @@
      border: 1px solid #545c64;
      background-color: #545c64;
      color: white;
-     border-radius: 3px;
+     border-radius: 5px;
  }
  .click-bottom:hover{
-     background-color: #444f64;
+     background-color: #434a50;
+     cursor:pointer;
  }
 
 
