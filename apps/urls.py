@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding:utf-8 -*-
+#author=von-fan
 """lishidai URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:

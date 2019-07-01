@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding:utf-8 -*-
+#author=von-fan
 """lishidai URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -15,7 +18,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from  django.conf.urls import url
+from django.conf.urls import url
 
 
 urlpatterns = [
