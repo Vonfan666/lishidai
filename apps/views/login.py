@@ -5,20 +5,16 @@ from   django.shortcuts  import  redirect,render_to_response,render,HttpResponse
 import  json
 from  apps.lib import fromInvalid
 from apps import models
+from apps.lib.invalidSessionCode import InvalidSession
+
+
+authUserLogin=InvalidSession("phone","pwd")
 
 def  index(req):
     return render_to_response('login.html')
 
 def  login(req):
-    data={
-        "msg":None,
-        "list":[
-            {"dict1":{"a":1}},
-            {"dict2":"2"},
-
-        ],
-        "status":200
-    }
+    data={}
     print(req.method)
     if req.method=='GET':
         data['errorMassage'] = '请求类型错误'
@@ -32,13 +28,27 @@ def  login(req):
             if  obj:
                 print(obj,obj[0])
                 if req.POST.get('pwd')==obj[0]["pwd"]:
+
+                    req.session["phone"] = req.POST.get('phone')
+                    req.session["pwd"] = req.POST.get('pwd')
+                    print("COOKIES----------------", req.COOKIES)
+                    print("SESSION--------------", req.session)
+                    print(req.session["pwd"])
+                    print(req.session["phone"])
+
                     data={'msg':'登录成功','status':200,'errorMassage':'null'}
+
                 else:
                     data['errorMassage']='您输入的密码有误！'
             else:
                 data['errorMassage'] = '您输入的账号不存在！'
             a = json.dumps(data)
-            return HttpResponse(a)
+            a=HttpResponse(a)
+            a.set_cookie("phone", req.POST.get('phone'))
+            a.set_cookie("pwd", req.POST.get('pwd'))
+
+            return a
+
         else:
             for  a  in  obj.errors:
                 try:
@@ -48,7 +58,9 @@ def  login(req):
             a=json.dumps(data)
             return HttpResponse(a)
 
-
-
 def  home(req):
-    return  render_to_response('home.html')
+
+    if authUserLogin.invalidLogin(req):
+        return render_to_response("home.html")
+    else:
+        return render_to_response("login.html")
