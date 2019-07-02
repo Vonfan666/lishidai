@@ -10,7 +10,15 @@ def  index(req):
     return render_to_response('login.html')
 
 def  login(req):
-    data={}
+    data={
+        "msg":None,
+        "list":[
+            {"dict1":{"a":1}},
+            {"dict2":"2"},
+
+        ],
+        "status":200
+    }
     print(req.method)
     if req.method=='GET':
         data['errorMassage'] = '请求类型错误'

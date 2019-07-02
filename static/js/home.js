@@ -29,7 +29,7 @@
               $(this).children('span').attr('class','icon iconfont icon-arrowBottom-fill');
               $(this).siblings().addClass("active")
         }
-    })
+    });
 
 
 
@@ -101,7 +101,31 @@
           $(".project-add").attr("value","0");
             $(".project-add").addClass("active");
             $(".project-add-1").addClass("active")
-    })
+    });
+
+
+
+    //设置栏  光标浮动到a B出来  光标浮动到C B进去
+
+
+    // $(".userSetting-div").mouseout(function () {
+    //    $(".userSetting-div").addClass("active")
+    // });
+    // $(".right-head-1-right").mousemove(function () {
+    //    $(".userSetting-div").removeClass("active")
+    // });
+    //
+
+
+
+    //
+    // $(".right-head-1-right",".userSetting-div").mouseout(function () {
+    //     $(".userSetting-div").addClass("active");
+    //     console.log(111)
+    // });
+
+
+
 
 
 

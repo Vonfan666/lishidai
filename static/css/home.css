@@ -89,13 +89,39 @@
                                               }
 
                                      .right-head-1-right{
+                                         position: absolute;
                                         display: flex;
                                         height: 50px;
                                         width: 150px;
-                                        float: right;
+                                        right: 20px;
                                          margin-right: 10px;
+                                         /*padding-bottom: 150px;*/
 
                                     }
+
+
+                                     .userSetting-div span{
+                                                    display: block;
+                                                    padding: 10px 10px;
+                                                }
+
+                                    .userSetting-div{
+                                                    position: absolute;
+                                                    background-color: #545c64;
+                                                    top: 50px;
+                                                    opacity: 0;
+
+                                                }
+                                     .right-head-1-right:hover .userSetting-div{
+                                                    position: absolute;
+                                                    background-color: #545c64;
+                                                    top: 50px;
+                                                    opacity: 1;
+                                                    z-index: 9;
+                                                    right: 40px;
+
+                                                }
+
                                                 .userImage{
                                                     background-image: url("/static/files/image/banner1.jpg");
                                                     /*background-repeat: repeat;*/
@@ -112,7 +138,13 @@
                                                     /*background-color: red;*/
                                                     font-size: 30px;
                                                     margin: auto;
+                                                    float: right;
+                                                    z-index: 3;
                                                 }
+
+
+
+
 
                 .projectListName{
                     position: relative;
@@ -282,16 +314,11 @@
                 height: 80px;
                 max-width: 100px;
             }
-
-             .rightList-table tbody tr td{
+            .rightList-table tbody tr td{
                 max-width: 100px;
                  height: 100%;
                  padding: 25px 0;
             }
-
-
-
-
             .rightList-table thead tr,.rightList-table tbody tr{
                 width: 100%;
                 text-align: center;
@@ -300,8 +327,7 @@
                 background-color: #e5e5e5;      /*#e5e5e5*/
 
             }
-
-             .rightList-table tbody tr td:nth-child(2):hover{
+            .rightList-table tbody tr td:nth-child(2):hover{
                  cursor:pointer;
              }
 

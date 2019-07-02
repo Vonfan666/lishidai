@@ -1,283 +1,74 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>相对定位</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        a{
-    text-decoration: none;
-        }
-        body{
-            font-family: "Times New Roman";
-            font-size: 12px;
-        }
-        .header-box{
-            position: fixed;
-            background-color: #2459a2;
-            width: 100%;
-            height: 44px;
-        }
-        .header-connect{
-            width: 1016px;
-            height: 44px;
-            line-height: 44px;
-            background-color: #2459a2;
-            margin:  0 auto;
-            position: relative;
-        }
-        .header-box .header-logo{
-            position: absolute;
-            display: inline-block;
-            background-image: url("logo.png");
-            width: 121px;
-            height: 23px;
-            margin: 11px 0;
-            margin-right: 13px;
-            background-repeat: no-repeat ;
-            background-color: red;
-
-        }
-        .header-name{
-            position: relative;
-            display: inline-block;
-            margin-top: 0;
-            margin-left: 133px;
-
-          }
-         .header-connect .header-name a{
-             display: inline-block;
-             color: white;
-             padding: 0 13px 0 16px ;
-             margin-left: -3px;
-
-         }
-        .header-connect .header-name1{
-            background-color: #204982;
-        }
-
-        .header-connect .login{
-            display: inline-block;
-            position: absolute;
-            margin-left: 235px;
-            height: 44px;
-
-        }
-        /*输入框*/
-        .header-connect .login .input-text  .input1{
-            display: inline-block;
-            position: absolute;
-            width: 93px;
-            height: 25px;
-            margin-top: 6px;
-            margin-bottom: 10px;
-            border: 2px solid white;
-        }
-        /*搜索图标背景框*/
-        .header-connect .login .input-text .input2{
-            display: inline-block;
-            background-color: white;
-            width: 11px;
-            height: 11px;
-            margin-left: 96px;
-            padding: 9px;
-            margin-top: 6px;
-        }
-        /*搜索图标*/
-        .header-connect .login .input2 .input3{
-            display: inline-block;
-            position: absolute;
-            background :no-repeat 0 -195px url("icon.png") ;
-            width: 17px;
-            height: 15px;
-
-
-        }
-        .header-connect .login-register{
-            display: inline-block;
-            margin-left: 105px;
-        }
-
-        /*登录注册按钮*/
-        .header-connect .login-register .register,.logining{
-            display: inline-block;
-
-
-            padding: 0 20px;
-            color: white;
-        }
-
-
-        /*悬浮效果*/
-        .header-connect .header-name .header-name2:hover,
-        .header-connect .login-register .register:hover,
-         .header-connect .login-register .logining:hover{
-            background-color: #1058ff;
-        }
-
-        .band-all{
-            padding-top: 44px;
-            background-color: rgb(237,237,237);
-        }
-        .band{
-            width: 960px;
-            margin: 0 auto;
-            /*background-color: #6D6E71;*/
-
-            background-color: rgb(255,255,255);
-        }
-        .band .section-left{
-            width: 630px;
-            /*background-color: #2459a2 ;*/
-        }
-        .band .section-left .section-nav{
-            overflow: hidden;
-            width: 630px;
-            /*background-color: #cc976a;*/
-            margin-top: 5px;
-        }
-
-        .band .section-left .section-nav .section-nav-1,.section-nav-1{
-            display: inline;
-            float: left;
-            overflow: hidden;
-
-        }
-        .band .section-left .section-nav .section-nav-1 a{
-            display: inline-block;
-            font-family: Tahoma;
-            color: rgb(51,102,153);
-            padding: 13px  20px ;
-        }
-        .band .section-left .section-nav .section-nav-1 a:hover,
-        .band .section-left .section-nav .section-nav-2 a:hover{
-            text-decoration: underline;
-            color: #171bff;
-        }
-
-        .band .section-left .section-nav .section-nav-2 {
-            float: left;
-            display: inline-block;
-            margin-left: 100px;
-            margin-top: 13px;
-        }
-
-        .band .section-left .section-nav .section-nav-2 a{
-            margin-left: 20px;
-
-        }
-
-
-        .band .section-left .section-nav .commit-commit{
-            /*display: inline-block;*/
-            float: right;
-            height: 30px;
-            width: 120px;
-            font-size: 15px;
-            color: #ffffff;
-            line-height: 30px;
-            margin-top: 6px;
-            background-color: #84a42b;
-        }
-
-        .band .section-left .section-nav .commit-commit:hover{
-            background-color: #84a42b;
-        }
-        .fabu{
-            margin-left: 10px;
-        }
-
-
-        .band .section-left .section-nav .commit-commit .icon{
-            display: inline-block;
-            float: left;
-            background: url("icon.png") 0 -184px  no-repeat;
-            width: 11px;
-            height: 13px;
-            /*line-height: 30px;*/
-            /*margin-top: 9px;*/
-            /*margin-left: 20px;*/
-            /*margin-right: 4px; ;*/
-            margin: 8px 4px 0 30px;
-
-        }
-
-
-
-    </style>
-</head>
-<body>
-
-<div class="header-box">
-    <div class="header-connect">
-        <a href="https://dig.chouti.com/" class="header-logo" ></a>
-
-        <div class="header-name">
-            <a href="#" class="header-name1">全部</a>
-            <a href="#" class="header-name2">42区</a>
-            <a href="#" class="header-name2">段子</a>
-            <a href="#" class="header-name2">图片</a>
-            <a href="#" class="header-name2">挨踢1024</a>
-            <a href="#" class="header-name2">你问我答</a>
-        </div>
-        <div class="login">
-            <form class="input-text" action="/" method="post">
-                <input class="input1" type="text" placeholder="请输入搜索内容">
-                <a class="input2">
-                    <span class="input3">
-                    </span>
-
-                </a>
-
-            </form>
-
-        </div>
-
-        <div class="login-register">
-            <a href="#" class="register">注册</a>
-            <a href="#" class="logining"> 登录</a>
-        </div>
-    </div>
-</div>
-<div class="band-all">
-    <div class="band">
-
-        <div class="section-left">
-            <div class="section-nav">
-                <div class="section-nav-1">
-                    <a href="#" class="new-1" id="new-id-1">最新</a>
-                    <a href="#" class="function-1" id="function-id-1">发现</a>
-                    <a href="#" class="commit-1" id="commit-id-1">人类发布</a>
-                </div>
-                <div class="section-nav-2">
-                    <a href="#" class="new-2" id="new-id-2">即时排序</a>
-                    <a href="#" class="function-2" id="function-id-2">24小时</a>
-                    <a href="#" class="commit-2" id="commit-id-2">3天</a>
-                </div>
-                <a href="#" class="commit-commit">
-                    <span class="icon"></span>
-                    <span class="fabu">发布</span>
-                </a>
-
-            </div>
-        </div>
-        <div class="section-rigth">
-
-        </div>
-
-
-    <div class="foot">
-
-    </div>
-    </div>
-</div>
-
-</body>
-</html>
-
-
-
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+ <meta charset="utf-8">  
+ <meta name="viewport" content="width=device-width,initial-scale=1.0">  
+ <title>DBCenter</title>  
+ </head>  
+ <style>  
+ *{  
+ margin: 0;  
+ padding: 0;  
+ list-style: none;  
+ text-decoration: none;  
+ }  
+ .nav{  
+ height: 40px;  
+ }  
+ .nav li{  
+ width: 100px;  
+ height: 40px;  
+ background: #ccc;  
+ text-align: center;  
+ line-height: 40px;  
+ color:blueviolet;  
+ cursor: pointer;  
+ position: relative;  
+ z-index: 5000;  
+ }  
+ .drop-down{  
+ position: absolute;  
+ top: 40px;  
+ left: 0;  
+ z-index: 300;  
+ transition: all .3s;  
+ -webkit-transition: all .3s;  
+ -moz-transition: all .3s;  
+ -ms-transition: all .3s;  
+ transform: translate3d(0px,-100%,0px);  
+ -webkit-transform: translate3d(0px,-100%,0px);  
+ -ms-transform: translate3d(0px,-100%,0px);  
+ -moz-transform: translate3d(0px,-100%,0px);  
+ opacity: 0;  
+ }  
+ .drop-down p{  
+ width: 100px;  
+ height: 30px;  
+ line-height: 30px;  
+ border-bottom: 1px solid #666;  
+ background: #9999;  
+ text-align: center;  
+ }  
+ .nav li:hover .drop-down{
+ transform: translate3d(0px,0%,0px);  
+ -webkit-transform: translate3d(0px,0%,0px);  
+ -ms-transform: translate3d(0px,0%,0px);  
+ -moz-transform: translate3d(0px,0%,0px);  
+ opacity: 1;  
+ }  
+ </style>  
+ <body>  
+ <div id="app">  
+ <ul class="nav">  
+ <li>  
+ 个人中心  
+ <div class="drop-down">  
+ <p>1</p >  
+ <p>2</p >  
+ <p>3</p >  
+ </div>  
+ </li>  
+ </ul>  
+ </div>  
+ </body>  
+ </html>  
