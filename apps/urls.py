@@ -19,11 +19,12 @@ Including another URLconf
 # from django.contrib import admin
 from django.urls import path,include
 from  django.conf.urls import url
-from  apps.views import login
+from  apps.views import login,home
 urlpatterns = [
     url(r'index/',login.index,name='index'),
     url(r'login/',login.login,name='login'),
-    url(r'home/',login.home,name='home'),
-    url(r'backLogin/',login.backLogin,name='backLogin'),
+    url(r'home/',home.home,name='home'),
+    url(r'backLogin/',home.backLogin,name='backLogin'),
+    url(r'home/', home.addProject, name='addProject'),
 
 ]

@@ -26,7 +26,8 @@ def  login(req):
         if  isInvalid:
             obj=models.Login.objects.filter(phone=req.POST.get('phone')).values('pwd')
             if  obj:
-                print(obj,obj[0])
+                print(obj)
+                print(req.POST.get('phone'),req.POST.get('pwd'))
                 if req.POST.get('pwd')==obj[0]["pwd"]:
 
                     req.session["phone"] = req.POST.get('phone')
@@ -75,6 +76,8 @@ def backLogin(req):
     }
     # phone=req.COOKIES.get("phone")
     del req.session["phone"]
+    # print("1111111",authUserLogin.delSession())
+    # del req.session[authUserLogin.delSession()]
     data["msg"]="操作成功"
     data["status"]=200
     return HttpResponse(json.dumps(data))

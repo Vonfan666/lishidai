@@ -3,6 +3,9 @@
             padding: 0;
 
         }
+        /*.all{*/
+            /*min-width: 1300px;*/
+        /*}*/
 
         .left{
             position: fixed;
@@ -12,6 +15,7 @@
             width: 180px;
             justify-content: center;
             color: burlywood;
+            z-index: 1;
         ;
         }
         .left-all{
@@ -62,6 +66,7 @@
             overflow: hidden;
             /*border: 5px solid blue;*/
             margin-right: 20px;
+            min-width: 700px;
         }
                 .right-head{
                     height: 50px;
@@ -90,11 +95,12 @@
                                               }
 
                                      .right-head-1-right{
-                                         position: absolute;
+                                         position: relative;
                                         display: flex;
                                         height: 50px;
                                         width: 150px;
-                                        right: 20px;
+                                        /*right: 20px;*/
+                                         float: right;
                                          margin-right: 10px;
                                          /*padding-bottom: 150px;*/
 
@@ -150,7 +156,7 @@
                                                     font-size: 30px;
                                                     margin: auto;
                                                     float: right;
-                                                    z-index: 3;
+                                                    /*z-index: 3;*/
                                                 }
 
 
@@ -170,20 +176,21 @@
                 }
                 .rightListSearch {
 
-                    display: flex;
+                    /*display: flex;*/
                     background-color: #e5e5e5;
                     height: 80px;
 
                 }
 
                         .inp{
-                            display: flex;
+                            display: inline-block;
                             margin: auto 15px;
                             background-color: #ffffff;
                             height: 40px;
                             width: 211px;
                             border: 2px solid #dcdfe6;
                             border-radius: 6px;
+                            margin-top: 20px;
                         }
                             .el-input{
                                 display: inline-block;
@@ -205,15 +212,18 @@
 
 
                                .inp-button{
-                                   margin: auto 0;
+                                   position: relative;
+                                   display: inline-block;
+                                   top: 2px;;
+
 
                                }
-                               .inp-button input:hover{
+                               .inp-button input:hover,.GlobleVariable input:hover{
                                     background-color: #444f64;
                                     cursor:pointer;
                                 }
 
-                                .inp-button input{
+                                .inp-button input,.GlobleVariable input{
                                     font-size: 16px;
                                     height: 40px;
                                     width: 60px;
@@ -226,7 +236,17 @@
                                 }
 
 
+                                .GlobleVariable{
+                                   display: inline-block;
+                                    position: relative;
+                                    line-height: 80px;
+                                    margin-right: 20px;
+                                    float: right;
+                                }
 
+                                .GlobleVariable input{
+                                    width: 90px;
+                                }
 
                         .project-add{
                             position: fixed;
@@ -242,13 +262,13 @@
 
                         }
 
-                        .project-add-1{
+                        .project-add-1,.project-add-11{
                             position: fixed;
                             top:35%;
                             left: -150px;
                             margin-left: 50%;
 
-                            width: 300px;
+                            width: 450px;
                             /*height: 200px;*/
                             background-color: #ffffff;
 
@@ -276,14 +296,16 @@
                             margin: 30px 0;
 
                         }
-                         .project-add-1-2 .fm-project-add p input{
+                         .project-add-1-2 .fm-project-add p input, .project-add-1-2 .fm-project-add p select{
                              height: 25px;
                              border-radius: 4px;
+                             width: 250px;
                          }
 
 
                          .project-add-1-2 {
                              margin: auto;
+                             text-align: center;
 
                          }
 

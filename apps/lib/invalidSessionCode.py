@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- conding:utf-8 -*-
+#auther=von-fan
 class InvalidSession():
     def  __init__(self,phone,pwd):
         self.phone=phone
@@ -21,6 +24,10 @@ class InvalidSession():
 
         else:
             return False
+
+    def  delSession(self):
+        phone=str(self.phone)
+        return   phone
 
 if  __name__=="__main__":
     authUserLogin=InvalidSession("phone","pwd")

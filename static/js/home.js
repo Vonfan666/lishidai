@@ -105,6 +105,32 @@
 
 
 
+
+    //首页新增
+    $('.GlobleVariable').children().eq(1).click(function () {
+        console.log($(".project-add").attr("value"));
+        if($(".project-add").attr("value")=="0"){
+           $(".project-add").attr("value","1");
+            $(".project-add").removeClass("active");
+            $(".project-add-11").removeClass("active")
+        }else {
+            $(".project-add").attr("value","0");
+            $(".project-add").addClass("active");
+            $(".project-add-11").addClass("active")
+        }
+    })
+
+
+
+    //取消蒙层
+    $(".project-add-1-false").click(function () {
+          $(".project-add").attr("value","0");
+            $(".project-add").addClass("active");
+            $(".project-add-11").addClass("active")
+    });
+
+
+
     //设置栏  光标浮动到a B出来  光标浮动到C B进去
 
 
