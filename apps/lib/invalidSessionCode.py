@@ -6,11 +6,17 @@ class InvalidSession():
 
     def  invalidLogin(self,req):
 
+        print(req.session)
+        # req.COOKIES.get()
+
         if req.COOKIES.get("phone",None)==None:
             return  False
 
-        if req.COOKIES.get(self.phone)==req.session[self.phone] and req.COOKIES.get(self.pwd)==req.session[self.pwd]:
+        if  req.session.get(self.phone,None)==None:
+            return  False
 
+        if req.COOKIES.get(self.phone)==req.session[self.phone] and req.COOKIES.get(self.pwd)==req.session[self.pwd]:
+            print("1")
             return True
 
         else:

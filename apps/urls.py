@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'index/',login.index,name='index'),
     url(r'login/',login.login,name='login'),
     url(r'home/',login.home,name='home'),
+    url(r'backLogin/',login.backLogin,name='backLogin'),
 
 ]

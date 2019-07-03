@@ -103,7 +103,17 @@
                                      .userSetting-div span{
                                                     display: block;
                                                     padding: 10px 10px;
+                                                    cursor: pointer;
+
                                                 }
+
+
+
+
+                                         .userSetting-div span:hover{
+                                                    background-color:#434a50;
+                                                }
+
 
                                     .userSetting-div{
                                                     position: absolute;

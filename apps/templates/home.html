@@ -12,6 +12,7 @@
     <script src="{% static 'plugins/ALicon/iconfont.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/main-css.css' %}">
+    <script src="{% static 'js/main-js.js' %}"></script>
 
 </head>
 
@@ -238,9 +239,26 @@
 {#        userSetting(".right-head-1-right",".userSetting-div")#}
 
 
+$(".userSetting-div").children().eq(3).click(function () {
+        console.log(2222222)
+    });
 
+$(".back-login").click(function () {
+    console.log(1111);
+    $.ajax({
+        "url":"{% url 'backLogin' %}",
+        "type":"POST",
+        "dataType":"json",
+        success:function (arg) {
+            console.log(arg);
+            console.log(arg.status);
+            if (arg.status=="200"){
 
+                window.location.href='{% url "login" %}'}
+        }
 
+    })
+});
 
 
 
