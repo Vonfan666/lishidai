@@ -181,6 +181,7 @@
             </div>
 
         </div>
+        {% block  lsdvarible %}
         <div class="rightList">
             <table class="rightList-table"  cellspacing="0"  cellpadding="0"  >
                 <thead>
@@ -275,6 +276,7 @@
 
             </table>
         </div>
+        {% endblock %}
     </div>
 </div>
 
@@ -323,6 +325,23 @@ $(".project-add-1-bottom").children().eq(1).click(function () {
 
     })
 })
+
+
+    $('.GlobleVariable').children().eq(0).click(function () {
+        $.ajax({
+            "url":'{% url "lsdvarible" %}',
+            "type":"POST",
+            "dataType":"JSON",
+            success:function (arg) {
+                console.log(arg);
+               if  (arg.status==200){
+                   console.log(200);
+                    window.location.href='{% url "lsdvarible" %}'
+                }
+            }
+
+        })
+    })
 
 
 

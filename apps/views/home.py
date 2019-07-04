@@ -4,18 +4,19 @@
 # @Author:von_fan
 # @Time:2019年07月04日01时28分44秒
 
-from django.shortcuts import render_to_response,HttpResponse
+from django.shortcuts import render_to_response,HttpResponse,redirect
 from  apps.lib.invalidSessionCode import InvalidSession
 import  json
 
-authUserLogin=InvalidSession("phone","pwd")
+selectValid=InvalidSession("phone","pwd")
+updateValid=InvalidSession("phone","pwd")
 
+
+@selectValid.cookiesVerify("home.html")
 def  home(req):
+    print("11111111111111111111111111")
+    return  HttpResponse(111111111111111111111111111)
 
-    if authUserLogin.invalidLogin(req):
-        return render_to_response("home.html")
-    else:
-        return render_to_response("login.html")
 
 
 def backLogin(req):
@@ -38,4 +39,21 @@ def backLogin(req):
 
 def  addProject(req):
     print(req.POST.get("data"))
-    print()
+
+
+def lsdvarible(req):
+
+    if updateValid.cookiesInspect(req):
+        if req.method == "GET":
+            print("ggggg", req.method)
+            return  render_to_response("lsdvarible.html")
+        else:
+            print(req.method)
+            data = {}
+            data["status"] = 200
+            data["msg"] = "请求成功"
+            return HttpResponse(json.dumps(data))
+    else:
+        return render_to_response("login.html")
+
+
