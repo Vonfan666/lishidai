@@ -85,7 +85,7 @@
 
                     </div>
 
-                    <div class="userName">admin</div>
+                    <div class="userName"></div>
                     <div class="userImage"></div>
                     <div class="userSetting-div" >
                         <span>修改密码</span>
@@ -135,19 +135,19 @@
                         <form class="fm-project-add">
                                 <p>项目名称：<input type="text" placeholder="必填" name="proName"></p>
                                 <p>项目版本：<input type="text" placeholder="必填" name="proHost"></p>
-                                <p>测试环境：<select  name="proVar" >
-                                        <optgroup label="请选择测试环境">
+                                <p>测试环境：
+                                    <select>
+                                            <option value="1" SELECTED>请选择测试环境</option>
                                             <option value="2">写死的地址</option>
-                                            <option value="2">写死的地址</option>
-                                                                                        <option value="1" >湖北省</option>
-                                            <option value="2">广东省</option>
-                                            <option value="3" selected>湖南省</option>  <!--selected  默认现在该-->
-                                            <option value="4">河南省</option>
-                                            <option value="1">广西省</option>
-                                            <option value="2">山东省</option>
-                                            <option value="3">黑龙江省</option>
-                                            <option value="4">四川省</option>
-                                        </optgroup>
+                                            <option value="3" >湖北省</option>
+                                            <option value="4">广东省</option>
+                                            <option value="5" >湖南省</option>  <!--selected  默认现在该-->
+                                            <option value="6">河南省</option>
+                                            <option value="7">广西省</option>
+                                            <option value="8">山东省</option>
+                                            <option value="9">黑龙江省</option>
+                                            <option value="10">四川省</option>
+
                                     </select>
                                 </p>
 
@@ -288,7 +288,7 @@
         acceptInp(".el-input input");
         removeInp(".el-input .icon",".el-input input");
         userName();
-    })
+    });
 {#        userSetting(".right-head-1-right",".userSetting-div")#}
 $(".userSetting-div").children().eq(3).click(function () {
         console.log(2222222)
