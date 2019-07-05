@@ -25,7 +25,8 @@ urlpatterns = [
     url(r'login/',login.login,name='login'),
     url(r'home/',home.home,name='home'),
     url(r'backLogin/',home.backLogin,name='backLogin'),
-    url(r'home/', home.addProject, name='addProject'),
+    url(r'addProject/', home.addProject, name='addProject'),
     url(r'lsdvarible/', home.lsdvarible, name='lsdvarible'),
+
 
 ]

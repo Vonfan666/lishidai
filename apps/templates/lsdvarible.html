@@ -1,8 +1,98 @@
 {% extends "home.html" %}
 {% load staticfiles %}
+
+{% block varible %}
+        <div class="projectListName">
+            <p>环境列表</p>
+        </div>
+        {% endblock %}
+
+        {% block viewPro %}
+        <div class="rightListSearch">
+            <div class="inp">
+                <form class="fm" action="#" method="GET">
+                    <div class="el-input">
+                        <input type="text" placeholder="请输入环境名称" >
+                        <span class="active icon iconfont icon-cross "></span>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="inp-button">
+                        <input  type="button" value="搜索">
+                        <input type="button" value="新增">
+            </div>
+
+{#            <div class="GlobleVariable">#}
+{##}
+{#                <input  type="button" value="查看项目">#}
+{#                <input type="button" value="新增项目">#}
+{##}
+{#            </div>#}
+
+            <div class="project-add active" value="0">
+            </div>
+            <div class="project-add-1 active">
+                <div class="project-add-1-1">
+                </div>
+                <div class="project-add-1-2">
+                    <div class="project-add-1-2">
+                        <form class="fm-project-add">
+                                <p>项目名称：<input type="text" placeholder="必填" name="proName"></p>
+                                <p>项目版本：<input type="text" placeholder="必填" name="proHost"></p>
+                                <p>测试环境：
+                                    <select>
+                                            <option value="1" SELECTED>请选择测试环境</option>
+                                            <option value="2">写死的地址</option>
+                                            <option value="3" >湖北省</option>
+                                            <option value="4">广东省</option>
+                                            <option value="5" >湖南省</option>  <!--selected  默认现在该-->
+                                            <option value="6">河南省</option>
+                                            <option value="7">广西省</option>
+                                            <option value="8">山东省</option>
+                                            <option value="9">黑龙江省</option>
+                                            <option value="10">四川省</option>
+
+                                    </select>
+                                </p>
+
+                        </form>
+                        <div class="project-add-1-bottom">
+                            <span class="project-add-1-false click-bottom">取消</span>
+                            <span class="project-add-1-true click-bottom">确定</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="project-add-11 active">
+                <div class="project-add-1-1">
+                </div>
+                 <div class="project-add-1-2">
+                    <div class="project-add-1-2">
+                        <form class="fm-project-add">
+                                <p>环境名称：<input type="text" placeholder="必填" name="proName"></p>
+                                <p> key&#12288&#12288：<input type="text" placeholder="必填 例如：url(英文别名)" name="prokey"></p>
+                                <p>环境地址：<input type="text" placeholder="必填 例：http://192.160.0.1:8080/" name="proattr"></p>
+
+                        </form>
+                        <div class="project-add-1-bottom">
+                            <span class="project-add-1-false click-bottom">取消</span>
+                            <span class="project-add-1-true click-bottom">确定</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        {% endblock %}
+
+
+
+
 {% block  lsdvarible %}
-
-
 <div class="rightList">
             <table class="rightList-table"  cellspacing="0"  cellpadding="0"  >
                 <thead>

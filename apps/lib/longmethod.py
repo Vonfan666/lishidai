@@ -15,6 +15,16 @@ class Method():
         a=str(random.randrange(100,999))
         return "{}{}".format(timeStr,a)
 
+
+    def nowTime(self):
+        timeStr = time.strftime('%Y-%m-%d %H:%M:%S')
+        return timeStr
+
 if  __name__=="__main__":
     MyMethod=Method()
+    a=MyMethod.nowTime()
+    print(a,type(a))
+
+
+
 

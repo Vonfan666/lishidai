@@ -3,12 +3,10 @@
  */
     //all所有页面必须执行的方法
     function cookiegetphone(key) {
-
     var cookiesList = document.cookie.split(";");
     for (i = 0; i < cookiesList.length; i++) {
-        console.log(i)
         cookieskey = cookiesList[i].split("=");
-        if (cookieskey[0] == key) {
+        if ($.trim(cookieskey[0]) == key) {    /*去掉空格*/
             return cookieskey[1]
         }
     }

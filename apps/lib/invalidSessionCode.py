@@ -28,7 +28,7 @@
 #     def  delSession(self):
 #         phone=str(self.phone)
 #         return   phone
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response,render
 class InvalidSession():
     def __init__(self, phone, pwd):
         self.phone = phone
@@ -51,10 +51,10 @@ class InvalidSession():
                 print(req.session)
                 if self.cookiesInspect(req):
                     print("22222222222222")
-                    return render_to_response(*args)
+                    return render(req,*args)
 
                 else:
-                    return render_to_response("login.html")
+                    return render(req,"login.html")
             return  inv
         return  invalidLogin
 
