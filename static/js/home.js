@@ -118,7 +118,7 @@
             $(".project-add").addClass("active");
             $(".project-add-11").addClass("active")
         }
-    })
+    });
 
 
 
@@ -128,6 +128,14 @@
             $(".project-add").addClass("active");
             $(".project-add-11").addClass("active")
     });
+    
+    
+    //自动取消蒙层
+    function backPop(ele) {
+        $(".project-add").attr("value","0");
+        $(".project-add").addClass("active");
+        $(ele).addClass("active")
+    }
 
 
 

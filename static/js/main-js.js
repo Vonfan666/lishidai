@@ -16,3 +16,25 @@
     function userName() {
         $(".userName").text(cookiegetphone("phone"))
     }
+
+
+    function toast(a) {
+        var fartherEle=$("body");
+        var childEle=$("<div class='toast'></div>");
+
+        var toastEle=$("<span class='toastText'></span>");
+
+
+        childEle.appendTo(fartherEle);
+        childEle.append(toastEle);
+        $(".toastText").html(a)
+
+    }
+    
+    function cleanToast() {
+        setTimeout(function () {
+            $('.toast').remove()
+        },2000)
+    }
+
+

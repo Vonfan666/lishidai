@@ -11,10 +11,6 @@
     <script src="{% static 'plugins/ALicon/iconfont.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/main-css.css' %}">
-
-
-
-
 </head>
 
 <body>
@@ -294,12 +290,11 @@
         acceptInp(".el-input input");
         removeInp(".el-input .icon",".el-input input");
         userName();
-        console.log(userName())
     });
 {#        userSetting(".right-head-1-right",".userSetting-div")#}
-$(".userSetting-div").children().eq(3).click(function () {
-        console.log(2222222)
-    });
+{#$(".userSetting-div").children().eq(3).click(function () {#}
+{#        console.log(2222222)#}
+{#    });#}
 $(".back-login").click(function () {
     console.log(1111);
     $.ajax({
@@ -317,37 +312,44 @@ $(".back-login").click(function () {
     })
 });
 
-
+//新增环境
 $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
     $.ajax({
-        "url":"{% url 'addProject' %}",
+        "url":"{% url 'addLsdvarible' %}",
         "type":"POST",
         "dataType":"JSON",
         "data":$(".project-add-11 .fm-project-add").serialize(),
         success:function (arg) {
+            backPop(".project-add-11");
+            toast(arg.msg);
+            cleanToast();
+
+
             console.log(arg)
         }
 
     })
-})
+});
 
-
+    //查看环境
     $('.GlobleVariable').children().eq(0).click(function () {
-        $.ajax({
-            "url":'{% url "lsdvarible" %}',
-            "type":"POST",
-            "dataType":"JSON",
-            success:function (arg) {
-                console.log(arg);
-               if  (arg.status==200){
-                   console.log(arg);
-                    window.location.href='{% url "lsdvarible" %}?data={}'.format(arg);
+{#        $.ajax({#}
+{#            "url":'{% url "lsdvarible" %}',#}
+{#            "type":"GET",#}
+{#            "dataType":"JSON",#}
+{#            success:function (arg) {#}
+{#               if  (arg.status==200){#}
+                    window.location.href='{% url "lsdvarible" %}';
 {#                   window.open("lsdvarible.html")#}
-                }
-            }
-
-        })
+{##}
+{#                }#}
+{#            }#}
+{##}
+{#        })#}
     })
+
+
+
 
 
 
@@ -360,5 +362,13 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
 
 
 </script>
+
+{% block script %}
+    <script>
+            $(".left-one").eq(0).css("background-color", "#434a50")
+            $(".left-one").eq(0).siblings().css("background-color","#545c64")
+    </script>
+{% endblock %}
+
 
 </html>

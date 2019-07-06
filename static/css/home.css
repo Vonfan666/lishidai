@@ -112,12 +112,14 @@
                                                     padding: 10px 10px;
                                                     cursor: pointer;
 
+
                                                 }
 
 
 
 
                                          .userSetting-div span:hover{
+
                                                     background-color:#434a50;
                                                 }
 
@@ -126,11 +128,13 @@
                                                     position: absolute;
                                                     background-color: #545c64;
                                                     top: 50px;
-                                                    opacity: 0;
+                                                    /*opacity: 0;*/
+                                                    display: none;
 
                                                 }
                                      .right-head-1-right:hover .userSetting-div{
                                                     position: absolute;
+                                                    display: block;
                                                     background-color: #545c64;
                                                     top: 50px;
                                                     opacity: 1;

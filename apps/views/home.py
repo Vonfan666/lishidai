@@ -11,15 +11,18 @@ from  apps import models
 import  json,datetime
 from django.forms.models import model_to_dict
 
-selectValid=InvalidSession("phone","pwd")
-updateValid=InvalidSession("phone","pwd")
+
+Valid=InvalidSession("phone","pwd")
 longMtd=longmethod.Method()
 
 
-@selectValid.cookiesVerify("home.html")
+
+
+@Valid.cookiesVerify("home.html")
 def  home(req):
 
-    return  req
+     return render_to_response("home.html")
+
 
 
 
@@ -41,14 +44,16 @@ def backLogin(req):
 
 
 
-def  addProject(req):
+
+
+def  addLsdvarible(req):
     data={}
 
     # print("----------------",req)
     # print(req.POST)
     #
     # print(model_to_dict(req.POST))
-    if updateValid.cookiesInspect(req):
+    if Valid.cookiesInspect(req):  #重新写一个装饰器
         print(req.POST)
         proName=req.POST.get("proName")
         prokey=req.POST.get("prokey")
@@ -68,7 +73,7 @@ def  addProject(req):
 
                                              )
         data["status"] = 200
-        data["msg"] = "请求成功"
+        data["msg"] = "操作成功"
         return HttpResponse(json.dumps(data))
     else:
         return render_to_response("login.html")
@@ -81,9 +86,9 @@ def lsdvarible(req):
         ]
 
     }
-    if updateValid.cookiesInspect(req):
+    if Valid.cookiesInspect(req):
         if req.method == "GET":
-            print("ggggg", req.method)
+
             return  render_to_response("lsdvarible.html")
         else:
 
@@ -102,11 +107,22 @@ def lsdvarible(req):
                 i+=1
             print("obj",obj)
             data["status"] = 200
-            data["msg"] = "请求成功"
-
+            data["msg"] = "操作成功"
+            print(data["list"])
             print(data)
             return HttpResponse(json.dumps(data))
     else:
         return render_to_response("login.html")
+
+
+
+def addProject(req):
+    if  Valid.cookiesInspect:
+        data=req.POST
+        print(data)
+    else:
+        return render_to_response("login.html")
+
+
 
 
