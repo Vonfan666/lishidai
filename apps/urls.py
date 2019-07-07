@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'addLsdvarible/', home.addLsdvarible, name='addLsdvarible'),
     url(r'lsdvarible/', home.lsdvarible, name='lsdvarible'),
     url(r'addProject/', home.addProject, name='addProject'),
+    url(r'lookproject/', home.lookproject, name='lookproject'),
 
 ]

@@ -5,15 +5,13 @@
 # @Time:2019年07月04日01时28分44秒
 
 from django.shortcuts import render_to_response,HttpResponse,redirect
-from  apps.lib.invalidSessionCode import InvalidSession
-from apps.lib import longmethod
+from apps.lib import *
 from  apps import models
 import  json,datetime
+
+from  django.http import QueryDict
 from django.forms.models import model_to_dict
 
-
-Valid=InvalidSession("phone","pwd")
-longMtd=longmethod.Method()
 
 
 
@@ -22,10 +20,6 @@ longMtd=longmethod.Method()
 def  home(req):
 
      return render_to_response("home.html")
-
-
-
-
 def backLogin(req):
 
 
@@ -40,11 +34,6 @@ def backLogin(req):
     data["msg"]="操作成功"
     data["status"]=200
     return HttpResponse(json.dumps(data))
-
-
-
-
-
 
 def  addLsdvarible(req):
     '''新增环境'''
@@ -73,12 +62,13 @@ def  addLsdvarible(req):
                                             updatetime=createtime,
 
                                              )
+
+
         data["status"] = 200
         data["msg"] = "操作成功"
         return HttpResponse(json.dumps(data))
     else:
         return render_to_response("login.html")
-
 
 def lsdvarible(req):
     '''查看环境列表'''
@@ -111,18 +101,64 @@ def lsdvarible(req):
             print("obj",obj)
             data["status"] = 200
             data["msg"] = "操作成功"
-            print(data["list"])
-            print(data)
+
             return HttpResponse(json.dumps(data))
     else:
         return render_to_response("login.html")
 
-
-
 def addProject(req):
-    if  Valid.cookiesInspect:
-        data=req.POST
-        return HttpResponse(1)
+    data = {
+        "list": [
+
+        ]
+
+    }
+    if req.POST.get("provarible")=="0":
+        data["status"] = 103
+        data["msg"] = "请选择环境"
+        return HttpResponse(json.dumps(data))
+
+    elif  Valid.cookiesInspect:
+        datacode=req.POST
+        datacode=datacode.dict()
+        datacode["procode"]=mymethod.proId()
+        datacode["provaronemany_id"]=datacode["provarible"]
+        datacode.pop("provarible")
+        datacode["updatetime"]=mymethod.nowTime()
+
+        models.lsdproject.objects.create(**datacode,)
+
+        datacode=models.lsdproject.objects.all().values("procode","proname","proversion","provaronemany_id__vbname","provarmaymany__phone")
+        for  a  in  datacode:
+
+
+
+            data["list"].append(a)
+        data["status"]=200
+        data["msg"]="添加成功"
+        return HttpResponse(json.dumps(data))
+    else:
+        return render_to_response("login.html")
+
+
+def lookproject(req):
+    data = {
+        "list": [
+
+        ]
+
+    }
+    if  Valid.cookiesInspect(req):
+        datacode = models.lsdproject.objects.all().values("procode", "proname", "proversion","provaronemany_id__vbname",
+                                                          "provarmaymany__phone","updatetime")
+        for a in datacode:
+            print(a["updatetime"])
+            a["updatetime"]=str(a["updatetime"]).split("+")[0]
+            data["list"].append(a)
+        data["status"] = 200
+        data["msg"] = "添加成功"
+
+        return HttpResponse(json.dumps(data))
     else:
         return render_to_response("login.html")
 

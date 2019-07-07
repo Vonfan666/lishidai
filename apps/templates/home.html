@@ -132,10 +132,10 @@
                 <div class="project-add-1-2">
                     <div class="project-add-1-2">
                         <form class="fm-project-add">
-                                <p>项目名称：<input type="text" placeholder="必填" name="proName"></p>
-                                <p>项目版本：<input type="text" placeholder="必填" name="proHost"></p>
+                                <p>项目名称：<input type="text" placeholder="必填" name="proname"></p>
+                                <p>项目版本：<input type="text" placeholder="必填" name="proversion"></p>
                                 <p>测试环境：
-                                    <select class="addProjectSelect" name="proVarible">
+                                    <select class="addProjectSelect" name="provarible">
 
 
 
@@ -189,83 +189,8 @@
 
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1008611</td>
-                        <td>立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代</td>
-                        <td>192.168.0.1</td>
-                        <td>8090</td>
-                        <td>test</td>
-                        <td>2019-07-01 23:30:59</td>
-                        <td><span>编辑</span> | <span>删除</span> |  <span>执行</span></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>1008611</td>
-                        <td>立时代</td>
-                        <td>192.168.0.1</td>
-                        <td>8090</td>
-                        <td>test</td>
-                        <td>2019-07-01 23:30:59</td>
-                        <td><span>编辑</span> | <span>删除</span> |  <span>执行</span></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>1008611</td>
-                        <td>立时代</td>
-                        <td>192.168.0.1</td>
-                        <td>8090</td>
-                        <td>test</td>
-                        <td>2019-07-01 23:30:59</td>
-                        <td><span>编辑</span> | <span>删除</span> |  <span>执行</span></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>1008611</td>
-                        <td>立时代</td>
-                        <td>192.168.0.1</td>
-                        <td>8090</td>
-                        <td>test</td>
-                        <td>2019-07-01 23:30:59</td>
-                        <td><span>编辑</span> | <span>删除</span> |  <span>执行</span></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>1008611</td>
-                        <td>立时代</td>
-                        <td>192.168.0.1</td>
-                        <td>8090</td>
-                        <td>test</td>
-                        <td>2019-07-01 23:30:59</td>
-                        <td><span>编辑</span> | <span>删除</span> |  <span>执行</span></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>1008611</td>
-                        <td>立时代</td>
-                        <td>192.168.0.1</td>
-                        <td>8090</td>
-                        <td>test</td>
-                        <td>2019-07-01 23:30:59</td>
-                        <td><span>编辑</span> | <span>删除</span> |  <span>执行</span></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>1008611</td>
-                        <td>立时代</td>
-                        <td>192.168.0.1</td>
-                        <td>8090</td>
-                        <td>test</td>
-                        <td>2019-07-01 23:30:59</td>
-                        <td><span>编辑</span> | <span>删除</span> |  <span>执行</span></td>
-                    </tr>
-                </tbody>
+
+
 
             </table>
         </div>
@@ -359,6 +284,7 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
                     selectOptionCode.append("<option></option>").children().eq(i+1).html(data[i].vbname).val(data[i].id)
                 }
 
+
             }
         })
     };
@@ -372,12 +298,59 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
             "dataType":"JSON",
             "data":selectOptionCode.serialize(),
             success:function (arg) {
-                backPop(".project-add-1");
-                toast(arg.msg);
-                cleanToast();
+
+                if (arg.status==200){
+                    backPop(".project-add-1");
+                    toast(arg.msg);
+
+                    console.log(arg)
+                    window.location.href="{% url 'home' %}";
+                    setTimeout(200);
+                    cleanToast();
+                }else {
+                     toast(arg.msg);
+                    cleanToast();
+                }
+
+
             }
         })
+    });
+
+
+
+
+    //查看环境
+    {% block lookproject %}
+lookproject();
+function lookproject() {
+    $.ajax({
+        "url":"{% url 'lookproject' %}",
+        "type":"POST",
+        "dataType":"JSON",
+        success:function (arg) {
+            console.log(arg);
+            if (arg.status==200){
+                data=arg.list;
+                for (i=0;i<data.length;i++){
+                    var tableEle=$(".rightList-table");
+                    tableEle.append("<tbody></tbody>").children("tbody").eq(i).append("<tr></tr>");
+
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(0).html(data[i].procode);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(1).html(data[i].proname);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(2).html(data[i].proversion);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(3).html(data[i].provaronemany_id__vbname);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(4).html(data[i].provarmaymany__phone);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(5).html(data[i].updatetime);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(6).html("<span>编辑</span> | <span>删除</span> |  <span>执行</span>");
+                }
+            }else {
+                toast("加载异常……");
+            }
+        }
     })
+}
+    {% endblock %}
 
 
 

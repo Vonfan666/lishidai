@@ -39,16 +39,17 @@ class lsdvarible(models.Model):
 
 
 class lsdproject(models.Model):
-
-    proname=models.CharField(max_length=255,verbose_name="项目名称")  #版本
+    procode=models.CharField(max_length=255,verbose_name="项目编码")  #项目编号
+    proname=models.CharField(max_length=255,verbose_name="项目名称")  #x项目名称
+    # provarible = models.CharField(max_length=255, verbose_name="测试环境")  # 测试环境
     proversion=models.CharField(max_length=255,verbose_name="测试版本") #测试版本
-    runname=models.CharField(max_length=255,blank=True,verbose_name="创建人",default=None)
-    updatetime=models.DateTimeField(default=timezone.now,verbose_name="最后一次执行时间")   #执行时间
-    proexecutevalid=models.IntegerField(default=1,verbose_name="执行权限")  #执行权限  1=True
-    proviewvalid=models.IntegerField(default=1,verbose_name="查看权限") #查看权限
 
-    proVarOneMany = models.ManyToManyField("lsdvarible")  # 测试环境
-    proVarMayMany = models.ForeignKey("Login", on_delete=models.CASCADE)  # 执行人
+    updatetime=models.DateTimeField(default=None,verbose_name="最后一次执行时间",null=True)   #执行时间
+    proexecutevalid=models.IntegerField(default=1,verbose_name="执行权限",null=True)  #执行权限  1=True
+    proviewvalid=models.IntegerField(default=1,verbose_name="查看权限",null=True) #查看权限
+
+    provaronemany = models.ForeignKey("lsdvarible",on_delete=models.CASCADE)  # 测试环境
+    provarmaymany = models.ManyToManyField("Login") #执行人
     class Meta():
         db_table='lsdproject'
         verbose_name_plural="项目"

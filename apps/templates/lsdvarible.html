@@ -142,6 +142,8 @@
 
 {% block script %}
 <script>
+
+
     $(".project-add-1 .project-add-1-bottom").children().eq(1).click(function () {
         $.ajax({
             "url":"{% url 'addLsdvarible' %}",
@@ -153,6 +155,7 @@
                 toast(arg.msg);
                 cleanToast();
                 console.log(arg)
+
             }
 
         })
@@ -193,19 +196,19 @@
 
                     var data=arg["list"];
                     for (i=0;i<data.length;i++){
+
                         var tableEle=$(".rightList-table");
                         tableEle.append("<tbody></tbody>");
-                        var  trEle=tableEle.children("tbody").eq(i).append("<tr></tr>");
+                        var  trEle=tableEle.children("tbody").eq(i).empty().append("<tr></tr>");
                         var dic=data[i];
 
-                        trEle.children("tr").eq(0).append("<td>11111</td>").children("td").eq(0).html(dic.vbname);
-                        trEle.children("tr").eq(0).append("<td>22</td>").children("td").eq(1).html(dic.vbkey);
-                        trEle.children("tr").eq(0).append("<td>33</td>").children("td").eq(2).html(dic.vbaddr);
-                        trEle.children("tr").eq(0).append("<td>44</td>").children("td").eq(3).html(dic.vbpop)
-                        trEle.children("tr").eq(0).append("<td>55</td>").children("td").eq(4).html(dic.createtime);
-                        trEle.children("tr").eq(0).append("<td>77</td>").children("td").eq(5).html(dic.updatetime);
-
-                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(6).append("<span>编辑</span> | <span>删除</span> |  <span>执行</span>")
+                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(0).html(dic.vbname);
+                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(1).html(dic.vbkey);
+                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(2).html(dic.vbaddr);
+                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(3).html(dic.vbpop)
+                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(4).html(dic.createtime);
+                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(5).html(dic.updatetime);
+                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(6).append("<span>编辑</span> | <span>删除</span>")
 
                 }
             }
@@ -217,7 +220,8 @@
     $(".left-one").eq(5).css("background-color", "#434a50")
     $(".left-one").eq(5).siblings().css("background-color","#545c64")
 
-
+{% block lookproject %}
+    {% endblock %}
 
 </script>
 
