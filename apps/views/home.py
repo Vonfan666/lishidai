@@ -47,6 +47,7 @@ def backLogin(req):
 
 
 def  addLsdvarible(req):
+    '''新增环境'''
     data={}
 
     # print("----------------",req)
@@ -80,6 +81,7 @@ def  addLsdvarible(req):
 
 
 def lsdvarible(req):
+    '''查看环境列表'''
     data = {
         "list":[
 
@@ -98,12 +100,13 @@ def lsdvarible(req):
             for  key  in obj:
                 print(key.vbname,key.vbkey,key.createtime)
                 print(data["list"].append({}))
+                data["list"][i]["id"] = key.id
                 data["list"][i]["vbname"]=key.vbname
                 data["list"][i]["vbkey"] = key.vbkey
                 data["list"][i]["vbaddr"] = key.vbaddr
                 data["list"][i]["vbpop"] = key.vbpop
-                data["list"][i]["createtime"] = str(key.createtime).split("+")[0]
-                data["list"][i]["updatetime"] = str(key.updatetime).split("+")[0]
+                data["list"][i]["createtime"] = str(key.createtime).split(".")[0]
+                data["list"][i]["updatetime"] = str(key.updatetime).split(".")[0]
                 i+=1
             print("obj",obj)
             data["status"] = 200
@@ -119,7 +122,7 @@ def lsdvarible(req):
 def addProject(req):
     if  Valid.cookiesInspect:
         data=req.POST
-        print(data)
+        return HttpResponse(1)
     else:
         return render_to_response("login.html")
 

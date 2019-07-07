@@ -296,14 +296,22 @@
 
                         }
 
+
+
                         .project-add-1-2 .fm-project-add p{
                             margin: 30px 0;
+
 
                         }
                          .project-add-1-2 .fm-project-add p input, .project-add-1-2 .fm-project-add p select{
                              height: 25px;
                              border-radius: 4px;
                              width: 250px;
+                         }
+
+
+                         .project-add-1-2 .fm-project-add p:nth-child(2) input{
+
                          }
 
 
@@ -365,6 +373,9 @@
 
             }
             .rightList-table tbody tr td:nth-child(2):hover{
+                 cursor:pointer;
+             }
+            .rightList-table tbody tr td:nth-child(7):hover{
                  cursor:pointer;
              }
 

@@ -127,6 +127,9 @@
           $(".project-add").attr("value","0");
             $(".project-add").addClass("active");
             $(".project-add-11").addClass("active")
+            var selectOptionCode=$('.addProjectSelect');
+            selectOptionCode.empty()
+
     });
     
     
@@ -135,6 +138,8 @@
         $(".project-add").attr("value","0");
         $(".project-add").addClass("active");
         $(ele).addClass("active")
+        var selectOptionCode=$('.addProjectSelect');
+            selectOptionCode.empty()
     }
 
 
