@@ -20,6 +20,8 @@
             <div class="left-one">
                 <dl>
                     <dt> 项目列表 <span></span></dt>
+                    <dd>项目列表</dd>
+
                 </dl>
             </div>
 
@@ -105,7 +107,7 @@
             <div class="inp">
                 <form class="fm" action="#" method="GET">
                     <div class="el-input">
-                        <input type="text" placeholder="请输入名称" >
+                        <input type="text" placeholder="请输入名称" name="proName">
                         <span class="active icon iconfont icon-cross "></span>
                     </div>
 
@@ -208,6 +210,7 @@
         acceptInp(".el-input input");
         removeInp(".el-input .icon",".el-input input");
         userName();
+
     });
 {#        userSetting(".right-head-1-right",".userSetting-div")#}
 {#$(".userSetting-div").children().eq(3).click(function () {#}
@@ -317,7 +320,17 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
         })
     });
 
-
+function createEle(data,i) {
+     var tableEle=$(".rightList-table");
+                    tableEle.append("<tbody></tbody>").children("tbody").eq(i).empty().append("<tr></tr>");
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(0).html(data[i].procode);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(1).html(data[i].proname);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(2).html(data[i].proversion);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(3).html(data[i].provaronemany_id__vbname);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(4).html(data[i].provarmaymany__phone);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(5).html(data[i].updatetime);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(6).html("<span>编辑</span> | <span>删除</span> |  <span>执行</span> |  <span>详情</span>");
+}
 
 
     //查看环境
@@ -333,16 +346,7 @@ function lookproject() {
             if (arg.status==200){
                 data=arg.list;
                 for (i=0;i<data.length;i++){
-                    var tableEle=$(".rightList-table");
-                    tableEle.append("<tbody></tbody>").children("tbody").eq(i).append("<tr></tr>");
-
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(0).html(data[i].procode);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(1).html(data[i].proname);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(2).html(data[i].proversion);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(3).html(data[i].provaronemany_id__vbname);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(4).html(data[i].provarmaymany__phone);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(5).html(data[i].updatetime);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(6).html("<span>编辑</span> | <span>删除</span> |  <span>执行</span> |  <span>详情</span>");
+                   createEle(data,i)
                 }
             }else {
                 toast("加载异常……");
@@ -350,12 +354,71 @@ function lookproject() {
         }
     })
 }
+
+
+$(".rightListSearch .inp-button").children().eq(0).click(function () {
+    $.ajax({
+        "url":"{% url 'findProject' %}",
+        "type":"POST",
+        "dataType":"JSON",
+        "data":$(".fm").serialize(),
+        success:function (arg) {
+            data = arg.list;
+            console.log(data);
+            if (data.length == 0) {
+                var tableEle = $(".rightList-table");
+                tableEle.children("tbody").empty()
+
+            } else{
+                    var tableEle = $(".rightList-table");
+                    tableEle.children("tbody").empty();
+                for (i = 0; i < data.length; i++) {
+
+                        console.log(11111);
+                        createEle(data, i)
+                }
+        }
+        }
+    })
+
+})
+        
+        $(".el-input").children("span").eq(0).click(function () {
+            $.ajax({
+        "url":"{% url 'findProject' %}",
+        "type":"POST",
+        "dataType":"JSON",
+        "data":"",
+        success:function (arg) {
+            data = arg.list;
+            console.log(data);
+            if (data.length == 0) {
+                var tableEle = $(".rightList-table");
+                tableEle.children("tbody").empty()
+
+            } else{
+                    var tableEle = $(".rightList-table");
+                    tableEle.children("tbody").empty();
+                for (i = 0; i < data.length; i++) {
+
+                        console.log(11111);
+                        createEle(data, i)
+                }
+        }
+        }
+    })
+        })
+        
     {% endblock %}
 
 
 
+$(".left-all").children().eq(0).children().eq(0).children("dd").eq(0).click(function () {
+   window.location.href="{% url 'home' %}"
 
+}
 
+)
 
 
 
@@ -366,9 +429,12 @@ function lookproject() {
 
 {% block script %}
     <script>
-            $(".left-one").eq(0).css("background-color", "#434a50")
-            $(".left-one").eq(0).siblings().css("background-color","#545c64")
+            $(".left-one").eq(0).children().eq(0).children("dd").eq(0).css("background-color", "#434a50");
+            $(".left-one").eq(0).siblings().css("background-color","#545c64");
+            openEle(0);
+
     </script>
+
 {% endblock %}
 
 

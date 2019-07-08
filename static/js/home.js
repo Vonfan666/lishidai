@@ -20,7 +20,7 @@
 
     $('.left-one dt').click(function () {
         var cls=$(this).children('span').attr('class');
-        console.log(cls)
+        console.log(cls) //打开-
         if (cls=="icon iconfont icon-arrowBottom-fill"){
             $(this).children('span').attr('class','icon iconfont icon-arrowTop-fill');
              $(this).siblings().removeClass("active")
@@ -30,7 +30,11 @@
               $(this).siblings().addClass("active")
         }
     });
-
+//当前页面执行该方法 展开列表
+    function openEle(n) {
+       $('.left-one').eq(0).children("dl").children("dt").children("span").eq(0).attr('class','icon iconfont icon-arrowTop-fill');
+        $('.left-one').eq(0).children("dl").children("dd").removeClass("active")
+    }
 
 
     //打开关闭左侧导航栏

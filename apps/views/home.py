@@ -8,6 +8,7 @@ from django.shortcuts import render_to_response,HttpResponse,redirect
 from apps.lib import *
 from  apps import models
 import  json,datetime
+from  django.core import serializers
 
 from  django.http import QueryDict
 from django.forms.models import model_to_dict
@@ -140,7 +141,7 @@ def addProject(req):
     else:
         return render_to_response("login.html")
 
-
+#查看环境
 def lookproject(req):
     data = {
         "list": [
@@ -163,5 +164,39 @@ def lookproject(req):
         return render_to_response("login.html")
 
 
+#搜索项目名称
+def findProject(req):
+    data={
+        "msg":None,
+        "list":[],
+        "status":None,
+    }
+    t=req.POST.get("proName")
+    print(t)
+    if t:
+        print("ttttttttttttttt",bool(t))
+        res = models.lsdproject.objects.filter(proname__contains=t).values("procode","proname","proversion","provaronemany_id__vbname","provarmaymany__phone","updatetime")
+        print("_______________",res)
+        print(bool(res))
+        if res:
+            for dic in res:
+                dic["updatetime"] = dic["updatetime"].strftime("%Y-%m-%d %H:%M:%S")
+                data["list"].append(dic)
+        else:
+            data["msg"]="未搜索到关键词,请重新输入！"
+    else:
+        res = models.lsdproject.objects.all().values("procode","proname","proversion","provaronemany_id__vbname","provarmaymany__phone","updatetime")
+        for dic in  res:
+            dic["updatetime"]=dic["updatetime"].strftime("%Y-%m-%d %H:%M:%S")
+            data["list"].append(dic)
+
+        # print(serializers.serialize('json', res))
+        # # data["list"]=(json.loads(serializers.serialize('json',res)))
+        print(data)
+
+    data["status"]=200
 
 
+
+
+    return  HttpResponse(json.dumps(data))
