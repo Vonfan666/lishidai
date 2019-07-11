@@ -148,7 +148,27 @@ def addProject(req):
 
 def editProject(req):
     print("_________________",req.POST)
-    return HttpResponse(1)
+    data={
+        "msg":None,
+        "list":[],
+        "status":None
+    }
+
+    if Valid.cookiesInspect(req):
+        proCode=req.POST.get("proCode")
+        proName=req.POST.get("proname")
+        proversion=req.POST.get("proversion")
+        provarible=req.POST.get("provarible")
+
+        print(proCode,proversion,proName)
+        if proName is None or proversion is None or provarible is None or provarible is "0" :
+            data["msg"]="输入不能为空"
+        else:
+            models.lsdproject.objects.filter(procode=proCode).update(proname=proName,proversion=proversion,provaronemany_id=provarible)
+            data["msg"]="修改成功"
+            data["status"] = 200
+    else:return render_to_response("login.html")
+    return HttpResponse(json.dumps(data))
 
 #查看环境
 def lookproject(req):
@@ -160,7 +180,7 @@ def lookproject(req):
     }
     if  Valid.cookiesInspect(req):
         datacode = models.lsdproject.objects.all().values("procode", "proname", "proversion","provaronemany_id__vbname",
-                                                          "provarmaymany__phone","updatetime")
+                                                          "provarmaymany__phone","updatetime","provaronemany_id").order_by("updatetime")
         for a in datacode:
             print(a["updatetime"])
             a["updatetime"]=str(a["updatetime"]).split("+")[0]
@@ -184,7 +204,7 @@ def findProject(req):
     print(t)
     if t:
         print("ttttttttttttttt",bool(t))
-        res = models.lsdproject.objects.filter(proname__contains=t).values("procode","proname","proversion","provaronemany_id__vbname","provarmaymany__phone","updatetime")
+        res = models.lsdproject.objects.filter(proname__contains=t).values("procode","proname","proversion","provaronemany_id__vbname","provarmaymany__phone","updatetime").order_by("updatetime")
         print("_______________",res)
         print(bool(res))
         if res:
@@ -194,7 +214,7 @@ def findProject(req):
         else:
             data["msg"]="未搜索到关键词,请重新输入！"
     else:
-        res = models.lsdproject.objects.all().values("procode","proname","proversion","provaronemany_id__vbname","provarmaymany__phone","updatetime")
+        res = models.lsdproject.objects.all().values("procode","proname","proversion","provaronemany_id__vbname","provarmaymany__phone","updatetime").order_by("updatetime")
         for dic in  res:
             dic["updatetime"]=dic["updatetime"].strftime("%Y-%m-%d %H:%M:%S")
             data["list"].append(dic)

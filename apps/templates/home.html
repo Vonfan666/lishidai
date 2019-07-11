@@ -149,6 +149,7 @@
                         <div class="project-add-1-bottom">
                             <span class="project-add-1-false click-bottom">取消</span>
                             <span class="project-add-1-true click-bottom">确定</span>
+                            <span class="project-add-1-true-edit click-bottom active">确定</span>
                         </div>
                     </div>
 
@@ -168,6 +169,8 @@
                         <div class="project-add-1-bottom">
                             <span class="project-add-1-false click-bottom">取消</span>
                             <span class="project-add-1-true click-bottom">确定</span>
+{#                            <span class="project-add-1-false-edit click-bottom active">取消</span>#}
+
                         </div>
                     </div>
 
@@ -186,7 +189,7 @@
                         <th>项目版本</th>
                         <th>测试环境</th>
                         <th>执行人员</th>
-                        <th>执行时间</th>
+                        <th>更新时间</th>
                         <th>操作</th>
 
                     </tr>
@@ -287,7 +290,7 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
                 var selectOptionCode=$('.addProjectSelect');
                 selectOptionCode.append(' <option value="0" selected>请选择测试环境</option>');
                 for  (i=0;i<data.length;i++){
-                    selectOptionCode.append("<option></option>").children().eq(i+1).html(data[i].vbname).val(data[i].id)
+                    selectOptionCode.append("<option class='option'></option>").children().eq(i+1).html(data[i].vbname).val(data[i].id)
                 }
 
 
@@ -298,13 +301,11 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
 
     $(".project-add-1 .project-add-1-true").click(function () {
         var selectOptionCode=$('.project-add-1 .fm-project-add');
-            addEditUpdateCleacProject(selectOptionCode,1)
+            addEditUpdateCleacProject(selectOptionCode)
     });
 
 
-    function addEditUpdateCleacProject(ele,type,proCode) {
-        console.log(type,"tepy的值");
-        if (type===1){
+    function addEditUpdateCleacProject(ele) {
              $.ajax({
             "url":"{% url 'addProject' %}",
             "type":"POST",
@@ -324,51 +325,73 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
                     cleanToast();
                 }
             }
-        })
+        })}
 
-        }
-        if (type===2){
 
-             $.ajax({
-            "url":"{% url 'editProject' %}",
-            "type":"POST",
-            "dataType":"JSON",
-            "data":ele.serialize()+"&proCode="+proCode,
-            success:function (arg) {
-{#                if (arg.status==200){#}
-{#                    backPop(".project-add-1");#}
-{#                    toast(arg.msg);#}
-{##}
-{#                    console.log(arg);#}
-{#                    window.location.href="{% url 'home' %}";#}
-{#                    setTimeout(200);#}
-{#                    cleanToast();#}
-{#                }else {#}
-{#                     toast(arg.msg);#}
-{#                    cleanToast();#}
-{#                }#}
-            }
-        })
-        }
 
-    }
 
     //点击编辑弹出蒙层
 
 
     $(".rightList-table").on("click",".editProject",function () {
-
+        $(".project-add-1-false").addClass("active");
+        $(".project-add-1-true").addClass("active");
+        $(".project-add-1-false").removeClass("active");
+        $(".project-add-1-true-edit").removeClass("active");
        towPage();
        addprojectSelectVarible();
        var proCode=$(this).parent().siblings().eq(0).text();
        var proName=$(this).parent().siblings().eq(1).text();
        var proversion=$(this).parent().siblings().eq(2).text();
+       var vbName=$(this).parent().siblings().eq(4).text();
+       var vbId=$(this).parent().siblings().eq(3).text();
+       console.log(vbId,typeof vbId);
+
+
         $(".fm-project-add").children("p").eq(0).children("input").val(proName);
         $(".fm-project-add").children("p").eq(1).children("input").val(proversion);
-        $(".project-add-1 .project-add-1-true").click(function () {
-            var selectOptionCode=$('.project-add-1 .fm-project-add');
-            addEditUpdateCleacProject(selectOptionCode,2,proCode)
-        })
+{#        var selectEle=".addProjectSelect option"#}
+{#        var a=$(".editProject").parents(".rightList").siblings(".rightListSearch").find(".option");#}
+{#        console.log(a)#}
+        $("body").eq(0).on("click",".option",function () {
+            console.log($(this));
+            var selectEle=$(this).parents(".rightList").siblings(".rightListSearch").find(".option");
+             for (i=0;i<selectEle.length;i++){
+            console.log(selectEle.eq(i).val());
+            if (selectEle.eq(i).val()==vbId){
+                selectEle.eq(i).attr("selected","selected");
+                selectEle.eq(i).siblings().attr("selected",null)
+            }else {
+                console.log(i,typeof i);
+            }
+        }
+        });
+
+        $(".project-add-1 .project-add-1-true-edit").click(function () {
+            $.ajax({
+                "url":"{% url 'editProject' %}",
+                "type":"POST",
+                "dataType":"JSON",
+                "data":$('.project-add-1 .fm-project-add').serialize()+"&proCode="+proCode+"&proversion="+proversion,
+                success:function (arg) {
+                    if (arg.status==200){
+
+                        backPop(".project-add-1");
+                        toast(arg.msg);
+
+    {#                    window.location.href="{% url 'home' %}";#}
+                        setTimeout(200);
+                        cleanToast();
+                        window.location.href="{% url 'home' %}"
+                    }else {
+                         toast(arg.msg);
+                        cleanToast();
+                    }
+                }
+            })
+
+        }
+        )
 
 
     });
@@ -380,10 +403,12 @@ function createEle(data,i) {
                     tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(0).html(data[i].procode);
                     tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(1).html(data[i].proname);
                     tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(2).html(data[i].proversion);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(3).html(data[i].provaronemany_id__vbname);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(4).html(data[i].provarmaymany__phone);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(5).html(data[i].updatetime);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(6).html("<span class='editProject'>编辑</span> | <span class='cleanProject'>删除</span> |  <span class='runProject'>执行</span> |  <span class='lookResult'>结果</span>");
+                    tableEle.children("tbody").eq(i).children("tr").append("<td class='active'>111</td>").children().eq(3).html(data[i].provaronemany_id
+);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(4).html(data[i].provaronemany_id__vbname);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(5).html(data[i].provarmaymany__phone);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(6).html(data[i].updatetime);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(7).html("<span class='editProject'>编辑</span> | <span class='cleanProject'>删除</span> |  <span class='runProject'>执行</span> |  <span class='lookResult'>结果</span>");
 }
 
 
@@ -437,7 +462,7 @@ $(".rightListSearch .inp-button").children().eq(0).click(function () {
     })
 
 });
-        
+
         $(".el-input").children("span").eq(0).click(function () {
             $.ajax({
         "url":"{% url 'findProject' %}",
@@ -461,7 +486,7 @@ $(".rightListSearch .inp-button").children().eq(0).click(function () {
         }
     })
         });
-        
+
     {% endblock %}
 
 
