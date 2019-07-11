@@ -26,5 +26,31 @@ if  __name__=="__main__":
     print(a,type(a))
 
 
+class Pagination():
+    def __init__(self,totalCount,nowPage,onePageCount,pageNumber):
+        '''
+        :param totalCount: 数据总条数
+        :param nowPage:  当前是第几页
+        :param onePageCount: 每页返回多少条
+        :param pageNumber: 总共几页
+        '''
+        self.totalCount=totalCount
+        self.nowPage=nowPage
+        self.onePageCount=onePageCount
+        self.pageNumber=pageNumber
+
+
+    def firstPage(self):
+        '''计算出前端传来的页面 起始索引'''
+        return  (self.nowPage-1)*self.onePageCount
+
+
+    def allPage(self):
+        '''计算前端需展示的页数'''
+        a,b=divmod(self.totalCount,self.onePageCount)
+        if b==0:
+            return a
+        return a+1
+
 
 

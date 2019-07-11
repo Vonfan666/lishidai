@@ -211,20 +211,20 @@
         removeInp(".el-input .icon",".el-input input");
         userName();
 
+
     });
 {#        userSetting(".right-head-1-right",".userSetting-div")#}
 {#$(".userSetting-div").children().eq(3).click(function () {#}
 {#        console.log(2222222)#}
 {#    });#}
 $(".back-login").click(function () {
-    console.log(1111);
+
     $.ajax({
         "url":"{% url 'backLogin' %}",
         "type":"POST",
         "dataType":"json",
         success:function (arg) {
-            console.log(arg);
-            console.log(arg.status);
+
             if (arg.status=="200"){
 
                 window.location.href='{% url "login" %}'}
@@ -232,6 +232,13 @@ $(".back-login").click(function () {
 
     })
 });
+
+//点击新增弹出蒙层
+$('.inp-button').children().eq(1).click(function () {
+         towPage()
+});
+
+
 
 //新增环境
 $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
@@ -246,7 +253,6 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
             cleanToast();
 
 
-            console.log(arg)
         }
 
     })
@@ -267,23 +273,20 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
 {#            }#}
 {##}
 {#        })#}
-    })
+    });
 //新增项目 获取所有环境名称
 
 
    function addprojectSelectVarible() {
-      console.log(11111);
         $.ajax({
             "url":"{% url 'lsdvarible' %}",
             "type":"POST",
             "dataType":"JSON",
             success:function (arg) {
-                console.log(arg.list.length);
                 var  data=arg.list;
                 var selectOptionCode=$('.addProjectSelect');
                 selectOptionCode.append(' <option value="0" selected>请选择测试环境</option>');
                 for  (i=0;i<data.length;i++){
-                    console.log(data[i]);
                     selectOptionCode.append("<option></option>").children().eq(i+1).html(data[i].vbname).val(data[i].id)
                 }
 
@@ -295,30 +298,81 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
 
     $(".project-add-1 .project-add-1-true").click(function () {
         var selectOptionCode=$('.project-add-1 .fm-project-add');
-        $.ajax({
+            addEditUpdateCleacProject(selectOptionCode,1)
+    });
+
+
+    function addEditUpdateCleacProject(ele,type,proCode) {
+        console.log(type,"tepy的值");
+        if (type===1){
+             $.ajax({
             "url":"{% url 'addProject' %}",
             "type":"POST",
             "dataType":"JSON",
-            "data":selectOptionCode.serialize(),
+            "data":ele.serialize(),
             success:function (arg) {
 
                 if (arg.status==200){
                     backPop(".project-add-1");
                     toast(arg.msg);
 
-                    console.log(arg)
-                    window.location.href="{% url 'home' %}";
+{#                    window.location.href="{% url 'home' %}";#}
                     setTimeout(200);
                     cleanToast();
                 }else {
                      toast(arg.msg);
                     cleanToast();
                 }
-
-
             }
         })
+
+        }
+        if (type===2){
+
+             $.ajax({
+            "url":"{% url 'editProject' %}",
+            "type":"POST",
+            "dataType":"JSON",
+            "data":ele.serialize()+"&proCode="+proCode,
+            success:function (arg) {
+{#                if (arg.status==200){#}
+{#                    backPop(".project-add-1");#}
+{#                    toast(arg.msg);#}
+{##}
+{#                    console.log(arg);#}
+{#                    window.location.href="{% url 'home' %}";#}
+{#                    setTimeout(200);#}
+{#                    cleanToast();#}
+{#                }else {#}
+{#                     toast(arg.msg);#}
+{#                    cleanToast();#}
+{#                }#}
+            }
+        })
+        }
+
+    }
+
+    //点击编辑弹出蒙层
+
+
+    $(".rightList-table").on("click",".editProject",function () {
+
+       towPage();
+       addprojectSelectVarible();
+       var proCode=$(this).parent().siblings().eq(0).text();
+       var proName=$(this).parent().siblings().eq(1).text();
+       var proversion=$(this).parent().siblings().eq(2).text();
+        $(".fm-project-add").children("p").eq(0).children("input").val(proName);
+        $(".fm-project-add").children("p").eq(1).children("input").val(proversion);
+        $(".project-add-1 .project-add-1-true").click(function () {
+            var selectOptionCode=$('.project-add-1 .fm-project-add');
+            addEditUpdateCleacProject(selectOptionCode,2,proCode)
+        })
+
+
     });
+
 
 function createEle(data,i) {
      var tableEle=$(".rightList-table");
@@ -329,11 +383,13 @@ function createEle(data,i) {
                     tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(3).html(data[i].provaronemany_id__vbname);
                     tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(4).html(data[i].provarmaymany__phone);
                     tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(5).html(data[i].updatetime);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(6).html("<span>编辑</span> | <span>删除</span> |  <span>执行</span> |  <span>详情</span>");
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(6).html("<span class='editProject'>编辑</span> | <span class='cleanProject'>删除</span> |  <span class='runProject'>执行</span> |  <span class='lookResult'>结果</span>");
 }
 
 
     //查看环境
+
+
     {% block lookproject %}
 lookproject();
 function lookproject() {
@@ -342,12 +398,13 @@ function lookproject() {
         "type":"POST",
         "dataType":"JSON",
         success:function (arg) {
-            console.log(arg);
             if (arg.status==200){
                 data=arg.list;
                 for (i=0;i<data.length;i++){
-                   createEle(data,i)
+                   createEle(data,i);
+
                 }
+
             }else {
                 toast("加载异常……");
             }
@@ -364,7 +421,6 @@ $(".rightListSearch .inp-button").children().eq(0).click(function () {
         "data":$(".fm").serialize(),
         success:function (arg) {
             data = arg.list;
-            console.log(data);
             if (data.length == 0) {
                 var tableEle = $(".rightList-table");
                 tableEle.children("tbody").empty()
@@ -373,15 +429,14 @@ $(".rightListSearch .inp-button").children().eq(0).click(function () {
                     var tableEle = $(".rightList-table");
                     tableEle.children("tbody").empty();
                 for (i = 0; i < data.length; i++) {
+                        createEle(data, i);
 
-                        console.log(11111);
-                        createEle(data, i)
                 }
         }
         }
     })
 
-})
+});
         
         $(".el-input").children("span").eq(0).click(function () {
             $.ajax({
@@ -391,7 +446,6 @@ $(".rightListSearch .inp-button").children().eq(0).click(function () {
         "data":"",
         success:function (arg) {
             data = arg.list;
-            console.log(data);
             if (data.length == 0) {
                 var tableEle = $(".rightList-table");
                 tableEle.children("tbody").empty()
@@ -401,13 +455,12 @@ $(".rightListSearch .inp-button").children().eq(0).click(function () {
                     tableEle.children("tbody").empty();
                 for (i = 0; i < data.length; i++) {
 
-                        console.log(11111);
-                        createEle(data, i)
+                        createEle(data, i);
                 }
         }
         }
     })
-        })
+        });
         
     {% endblock %}
 
@@ -415,11 +468,8 @@ $(".rightListSearch .inp-button").children().eq(0).click(function () {
 
 $(".left-all").children().eq(0).children().eq(0).children("dd").eq(0).click(function () {
    window.location.href="{% url 'home' %}"
-
 }
-
-)
-
+);
 
 
 

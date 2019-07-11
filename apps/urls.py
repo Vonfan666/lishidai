@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'addProject/', home.addProject, name='addProject'),
     url(r'lookproject/', home.lookproject, name='lookproject'),
     url(r'findProject/', home.findProject, name='findProject'),
+    url(r'editProject/', home.editProject, name='editProject'),
 
 ]

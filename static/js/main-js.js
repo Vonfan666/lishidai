@@ -40,6 +40,20 @@
     }
 
 
+    // function bingClik(ele) {
+    //     console.log("执行了");
+    //     $(ele).each(function (index,element) {
+    //      console.log("111111");
+    //     console.log(index) ;
+    //      console.log(element);
+    //      $(element).click(function () {
+    //          var procode=$(element).parent().siblings().eq(0).html();
+    //          console.log(procode)
+    //      })
+    //  });
+    // }
+    //
+
 
 
 

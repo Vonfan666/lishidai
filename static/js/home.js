@@ -85,7 +85,7 @@
 
 
     //首页新增
-    $('.inp-button').children().eq(1).click(function () {
+    function towPage() {
         console.log($(".project-add").attr("value"));
         if($(".project-add").attr("value")=="0"){
            $(".project-add").attr("value","1");
@@ -96,7 +96,9 @@
             $(".project-add").addClass("active");
             $(".project-add-1").addClass("active")
         }
-    })
+    }
+
+
 
 
 

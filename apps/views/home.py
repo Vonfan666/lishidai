@@ -37,6 +37,8 @@ def backLogin(req):
     return HttpResponse(json.dumps(data))
 
 def  addLsdvarible(req):
+    print(1111111111111111111111)
+    print(req.POST,"!!!!!!!!!!!!!!!!!!!!")
     '''新增环境'''
     data={}
 
@@ -45,7 +47,7 @@ def  addLsdvarible(req):
     #
     # print(model_to_dict(req.POST))
     if Valid.cookiesInspect(req):  #重新写一个装饰器
-        print(req.POST)
+
         proName=req.POST.get("proName")
         prokey=req.POST.get("prokey")
         proattr=req.POST.get("proattr")
@@ -80,6 +82,7 @@ def lsdvarible(req):
 
     }
     if Valid.cookiesInspect(req):
+        print(req.POST)
         if req.method == "GET":
 
             return  render_to_response("lsdvarible.html")
@@ -96,8 +99,8 @@ def lsdvarible(req):
                 data["list"][i]["vbkey"] = key.vbkey
                 data["list"][i]["vbaddr"] = key.vbaddr
                 data["list"][i]["vbpop"] = key.vbpop
-                data["list"][i]["createtime"] = str(key.createtime).split(".")[0]
-                data["list"][i]["updatetime"] = str(key.updatetime).split(".")[0]
+                data["list"][i]["createtime"] = str(key.createtime).split("+")[0]
+                data["list"][i]["updatetime"] = str(key.updatetime).split("+")[0]
                 i+=1
             print("obj",obj)
             data["status"] = 200
@@ -106,8 +109,10 @@ def lsdvarible(req):
             return HttpResponse(json.dumps(data))
     else:
         return render_to_response("login.html")
-
+#新增项目
 def addProject(req):
+    print("!!!!!!!!!!!!!!!!!")
+    print(req.POST,"!!!!!!!!!!!!")
     data = {
         "list": [
 
@@ -140,6 +145,10 @@ def addProject(req):
         return HttpResponse(json.dumps(data))
     else:
         return render_to_response("login.html")
+
+def editProject(req):
+    print("_________________",req.POST)
+    return HttpResponse(1)
 
 #查看环境
 def lookproject(req):
