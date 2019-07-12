@@ -29,15 +29,15 @@
 
         childEle.appendTo(fartherEle);
         childEle.append(toastEle);
-        $(".toastText").html(a)
-
-    }
-    
-    function cleanToast() {
+        $(".toastText").html(a);
         setTimeout(function () {
             $('.toast').remove()
-        },2000)
+        },1000)
+
     }
+    // function cleanToast() {
+    //
+    // }
 
 
     // function bingClik(ele) {

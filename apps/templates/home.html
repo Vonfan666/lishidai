@@ -253,7 +253,7 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
         success:function (arg) {
             backPop(".project-add-11");
             toast(arg.msg);
-            cleanToast();
+{#            cleanToast();#}
 
 
         }
@@ -280,23 +280,25 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
 //新增项目 获取所有环境名称
 
 
-   function addprojectSelectVarible() {
+  function addprojectSelectVarible() {
         $.ajax({
             "url":"{% url 'lsdvarible' %}",
             "type":"POST",
             "dataType":"JSON",
+             "async" : false,
             success:function (arg) {
                 var  data=arg.list;
                 var selectOptionCode=$('.addProjectSelect');
-                selectOptionCode.append(' <option value="0" selected>请选择测试环境</option>');
+                selectOptionCode.append(' <option value="0" selected="selected">请选择测试环境</option>');
                 for  (i=0;i<data.length;i++){
                     selectOptionCode.append("<option class='option'></option>").children().eq(i+1).html(data[i].vbname).val(data[i].id)
                 }
 
 
             }
-        })
-    };
+        });
+
+    }
 
 
     $(".project-add-1 .project-add-1-true").click(function () {
@@ -310,6 +312,7 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
             "url":"{% url 'addProject' %}",
             "type":"POST",
             "dataType":"JSON",
+
             "data":ele.serialize(),
             success:function (arg) {
 
@@ -319,10 +322,10 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
 
 {#                    window.location.href="{% url 'home' %}";#}
                     setTimeout(200);
-                    cleanToast();
+{#                    cleanToast();#}
                 }else {
                      toast(arg.msg);
-                    cleanToast();
+{#                    cleanToast();#}
                 }
             }
         })}
@@ -330,71 +333,107 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
 
 
 
-    //点击编辑弹出蒙层
-
-
-    $(".rightList-table").on("click",".editProject",function () {
+    //点击编辑弹出蒙层--编辑
+    $(".rightList-table").on("click", ".editProject", function () {
         $(".project-add-1-false").addClass("active");
         $(".project-add-1-true").addClass("active");
         $(".project-add-1-false").removeClass("active");
         $(".project-add-1-true-edit").removeClass("active");
-       towPage();
-       addprojectSelectVarible();
-       var proCode=$(this).parent().siblings().eq(0).text();
-       var proName=$(this).parent().siblings().eq(1).text();
-       var proversion=$(this).parent().siblings().eq(2).text();
-       var vbName=$(this).parent().siblings().eq(4).text();
-       var vbId=$(this).parent().siblings().eq(3).text();
-       console.log(vbId,typeof vbId);
+        towPage();
+        addprojectSelectVarible();
 
-
+        console.log(selectEle);
+        var proCode = $(this).parent().siblings().eq(0).text();
+        var proName = $(this).parent().siblings().eq(1).text();
+        var proversion = $(this).parent().siblings().eq(2).text();
+        var vbName = $(this).parent().siblings().eq(4).text();
+        var vbId = $(this).parent().siblings().eq(3).text();
         $(".fm-project-add").children("p").eq(0).children("input").val(proName);
         $(".fm-project-add").children("p").eq(1).children("input").val(proversion);
-{#        var selectEle=".addProjectSelect option"#}
-{#        var a=$(".editProject").parents(".rightList").siblings(".rightListSearch").find(".option");#}
-{#        console.log(a)#}
-        $("body").eq(0).on("click",".option",function () {
-            console.log($(this));
-            var selectEle=$(this).parents(".rightList").siblings(".rightListSearch").find(".option");
-             for (i=0;i<selectEle.length;i++){
-            console.log(selectEle.eq(i).val());
-            if (selectEle.eq(i).val()==vbId){
-                selectEle.eq(i).attr("selected","selected");
-                selectEle.eq(i).siblings().attr("selected",null)
-            }else {
-                console.log(i,typeof i);
+        {#        var selectEle=".addProjectSelect option"#}
+        {#        var a=$(".editProject").parents(".rightList").siblings(".rightListSearch").find(".option");#}
+        {#        console.log(a)#}
+        {#        $(".editProject").eq(0).on("click",".option",function () {#}
+        {#            console.log($(this));#}
+        {#            var selectEle=$(this).parents(".rightList").siblings(".rightListSearch").find(".option");#}
+        {#        var selectEle=$(".addProjectSelect").eq(0).children("option");#}
+        {#        var selectEle=document.querySelector('.addProjectSelect').children;#}
+        {#        console.log(selectEle);#}
+        var selectEle = $(".addProjectSelect").eq(0).children("option");
+        console.log(selectEle);
+
+        for (i = 0; i < selectEle.length; i++) {
+            console.log(111111);
+            console.log(selectEle[i].value);
+            if (selectEle[i].value === vbId) {
+                console.log("if");
+                selectEle[i].setAttribute("selected", "selected");
+                {#                selectEle[i].sibl.getAttribute("selected",null)#}
+            } else {
+                selectEle[i].removeAttribute("selected")
             }
         }
-        });
-
         $(".project-add-1 .project-add-1-true-edit").click(function () {
-            $.ajax({
-                "url":"{% url 'editProject' %}",
+                $.ajax({
+                    "url": "{% url 'editProject' %}",
+                    "type": "POST",
+                    "dataType": "JSON",
+                    "data": $('.project-add-1 .fm-project-add').serialize() + "&proCode=" + proCode + "&proversion=" + proversion,
+                    success: function (arg) {
+                        if (arg.status == 200) {
+
+                            backPop(".project-add-1");
+                            toast(arg.msg);
+
+                            {#                    window.location.href="{% url 'home' %}";#}
+                            setTimeout(200);
+{#                            cleanToast();#}
+                            window.location.href = "{% url 'home' %}"
+                        } else {
+                            toast(arg.msg);
+
+                        }
+                    }
+                })
+
+            }
+        );
+    });
+
+
+
+    //删除
+    $(".rightList-table").on("click",".cleanProject",function () {
+        var proCode = $(this).parent().siblings().eq(0).text();
+{#        $(this).parents("tbody").remove()#}
+        data={};
+        data.proCode=proCode;
+        function func() {
+            return $(this).parents("tbody").remove();
+        }
+        $.ajax( {
+                "url":"{% url 'clearProject' %}",
                 "type":"POST",
                 "dataType":"JSON",
-                "data":$('.project-add-1 .fm-project-add').serialize()+"&proCode="+proCode+"&proversion="+proversion,
+                "data":data,
                 success:function (arg) {
                     if (arg.status==200){
-
-                        backPop(".project-add-1");
+                        console.log($(this));
+                        func();
                         toast(arg.msg);
 
-    {#                    window.location.href="{% url 'home' %}";#}
-                        setTimeout(200);
-                        cleanToast();
-                        window.location.href="{% url 'home' %}"
-                    }else {
-                         toast(arg.msg);
-                        cleanToast();
                     }
                 }
-            })
-
-        }
-        )
 
 
+
+        })
     });
+
+
+
+
+
 
 
 function createEle(data,i) {
