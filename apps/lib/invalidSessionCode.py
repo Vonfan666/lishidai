@@ -50,7 +50,6 @@ class InvalidSession():
                 func(req)
                 print(req.session)
                 if self.cookiesInspect(req):
-                    print("22222222222222")
                     return render(req,*args)
 
                 else:

@@ -239,6 +239,8 @@ $(".back-login").click(function () {
 //点击新增弹出蒙层
 $('.inp-button').children().eq(1).click(function () {
          towPage()
+        $(".project-add-1-true").removeClass("active");
+        $(".project-add-1-true-edit").addClass("active")
 });
 
 
@@ -374,10 +376,11 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
             }
         }
         $(".project-add-1 .project-add-1-true-edit").click(function () {
+                console.log($('.project-add-1 .fm-project-add').serialize() + "&proCode=" + proCode + "&proversion=" + proversion);
                 $.ajax({
                     "url": "{% url 'editProject' %}",
                     "type": "POST",
-                    "dataType": "JSON",
+                    "dataType": "json",
                     "data": $('.project-add-1 .fm-project-add').serialize() + "&proCode=" + proCode + "&proversion=" + proversion,
                     success: function (arg) {
                         if (arg.status == 200) {

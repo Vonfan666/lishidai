@@ -55,6 +55,11 @@
     //
 
 
+function addRemove(data,ele) {
+
+}
+
+
 
 
 

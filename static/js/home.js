@@ -132,7 +132,7 @@
     $(".project-add-1-false").click(function () {
           $(".project-add").attr("value","0");
             $(".project-add").addClass("active");
-            $(".project-add-11").addClass("active")
+            $(".project-add-11").addClass("active");
             var selectOptionCode=$('.addProjectSelect');
             selectOptionCode.empty()
 
@@ -143,7 +143,7 @@
     function backPop(ele) {
         $(".project-add").attr("value","0");
         $(".project-add").addClass("active");
-        $(ele).addClass("active")
+        $(ele).addClass("active");
         var selectOptionCode=$('.addProjectSelect');
             selectOptionCode.empty()
     }
