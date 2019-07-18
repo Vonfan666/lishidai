@@ -32,5 +32,6 @@ urlpatterns = [
     url(r'findProject/', home.findProject, name='findProject'),
     url(r'editProject/', home.editProject, name='editProject'),
     url(r'clearProject/', home.clearProject, name='clearProject'),
+    url(r'findVarible/', home.findVarible, name='findVarible'),
 
 ]

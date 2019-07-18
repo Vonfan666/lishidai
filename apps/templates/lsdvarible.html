@@ -144,6 +144,21 @@
 <script>
 
 
+//搜索环境
+
+    $(".inp-button").children().eq(0).click(function () {
+        $.ajax({
+            "url":"{% url 'findVarible' %}",
+            "type":"POST",
+            "dataType":"json",
+            "data":$(".el-input input").serialize(),
+            success:function (arg) {
+                console.log(arg)
+            }
+
+        })
+    });
+
     $(".project-add-1 .project-add-1-bottom").children().eq(1).click(function () {
         $.ajax({
             "url":"{% url 'addLsdvarible' %}",
@@ -153,7 +168,6 @@
             success:function (arg) {
                 backPop(".project-add-1");
                 toast(arg.msg);
-                cleanToast();
                 console.log(arg)
 
             }

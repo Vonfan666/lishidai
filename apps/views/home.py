@@ -168,7 +168,6 @@ def editProject(req):
             data["status"] = 200
     else:return render_to_response("login.html")
     return HttpResponse(json.dumps(data))
-
 #删除项目
 def clearProject(req):
     data = {
@@ -186,8 +185,6 @@ def clearProject(req):
     else:
         data["msg"]="删除失败"
     return  HttpResponse(json.dumps(data))
-
-
 #查看项目
 def lookproject(req):
     data = {
@@ -209,8 +206,6 @@ def lookproject(req):
         return HttpResponse(json.dumps(data))
     else:
         return render_to_response("login.html")
-
-
 #搜索项目名称
 def findProject(req):
     data={
@@ -247,3 +242,12 @@ def findProject(req):
 
 
     return  HttpResponse(json.dumps(data))
+
+
+def  findVarible(req):
+    print("path----",req.path)
+    if  Valid.cookiesInspect(req):
+        pass
+    else:
+        pass
+    return HttpResponse(111)

@@ -303,39 +303,6 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
     }
 
 
-    $(".project-add-1 .project-add-1-true").click(function () {
-        var selectOptionCode=$('.project-add-1 .fm-project-add');
-            addEditUpdateCleacProject(selectOptionCode)
-    });
-
-
-    function addEditUpdateCleacProject(ele) {
-             $.ajax({
-            "url":"{% url 'addProject' %}",
-            "type":"POST",
-            "dataType":"JSON",
-
-            "data":ele.serialize(),
-            success:function (arg) {
-
-                if (arg.status==200){
-                    backPop(".project-add-1");
-
-
-{#                    window.location.href="{% url 'home' %}";#}
-                    setTimeout(200);
-                    toast(arg.msg);
-
-                    addCreateEleFirst(arg.list,0);
-
-{#                    cleanToast();#}
-                }else {
-                     toast(arg.msg);
-{#                    cleanToast();#}
-                }
-            }
-        })}
-
 
 
 
@@ -470,6 +437,46 @@ function createEle(data,i) {
 
 
     {% block lookproject %}
+
+
+    $(".project-add-1 .project-add-1-true").click(function () {
+        var selectOptionCode=$('.project-add-1 .fm-project-add');
+            addEditUpdateCleanProject(selectOptionCode)
+    });
+
+//新增
+    function addEditUpdateCleanProject(ele) {
+             $.ajax({
+            "url":"{% url 'addProject' %}",
+            "type":"POST",
+            "dataType":"JSON",
+
+            "data":ele.serialize(),
+            success:function (arg) {
+
+                if (arg.status==200){
+                    backPop(".project-add-1");
+
+
+{#                    window.location.href="{% url 'home' %}";#}
+                    setTimeout(200);
+                    toast(arg.msg);
+
+                    addCreateEleFirst(arg.list,0);
+
+{#                    cleanToast();#}
+                }else {
+                     toast(arg.msg);
+{#                    cleanToast();#}
+                }
+            }
+        })}
+
+
+
+
+
+
 lookproject();
 function lookproject() {
     $.ajax({
