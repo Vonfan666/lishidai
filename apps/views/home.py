@@ -134,11 +134,10 @@ def addProject(req):
 
         models.lsdproject.objects.create(**datacode,)
 
-        datacode=models.lsdproject.objects.all().values("procode","proname","proversion","provaronemany_id__vbname","provarmaymany__phone")
+        datacode=models.lsdproject.objects.all().values("procode", "proname", "proversion","provaronemany_id__vbname",
+                                                          "provarmaymany__phone","updatetime","provaronemany_id").order_by("updatetime").reverse()
         for  a  in  datacode:
-
-
-
+            a["updatetime"]=str(a["updatetime"]).split("+")[0]
             data["list"].append(a)
         data["status"]=200
         data["msg"]="添加成功"

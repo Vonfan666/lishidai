@@ -320,10 +320,14 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
 
                 if (arg.status==200){
                     backPop(".project-add-1");
-                    toast(arg.msg);
+
 
 {#                    window.location.href="{% url 'home' %}";#}
                     setTimeout(200);
+                    toast(arg.msg);
+
+                    addCreateEleFirst(arg.list,0);
+
 {#                    cleanToast();#}
                 }else {
                      toast(arg.msg);
@@ -411,9 +415,7 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
 {#        $(this).parents("tbody").remove()#}
         data={};
         data.proCode=proCode;
-        function func() {
-            return $(this).parents("tbody").remove();
-        }
+        var ele=$(this);
         $.ajax( {
                 "url":"{% url 'clearProject' %}",
                 "type":"POST",
@@ -421,8 +423,7 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
                 "data":data,
                 success:function (arg) {
                     if (arg.status==200){
-                        console.log($(this));
-                        func();
+                        ele.parents("tbody").remove();
                         toast(arg.msg);
 
                     }
@@ -435,7 +436,18 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
 
 
 
-
+function addCreateEleFirst(data,i) {
+     var tableEle=$(".rightList-table");
+                    tableEle.prepend("<tbody></tbody>").children("tbody").eq(i).empty().append("<tr></tr>");
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(0).html(data[i].procode);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(1).html(data[i].proname);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(2).html(data[i].proversion);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td class='active'>111</td>").children().eq(3).html(data[i].provaronemany_id);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(4).html(data[i].provaronemany_id__vbname);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(5).html(data[i].provarmaymany__phone);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(6).html(data[i].updatetime);
+                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(7).html("<span class='editProject'>编辑</span> | <span class='cleanProject'>删除</span> |  <span class='runProject'>执行</span> |  <span class='lookResult'>结果</span>");
+}
 
 
 
