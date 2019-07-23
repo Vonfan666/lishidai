@@ -35,6 +35,7 @@ class InvalidSession():
         self.pwd = pwd
     def cookiesInspect(self,req):
         if req.COOKIES.get("phone", None) == None:
+
             return False
         if req.session.get(self.phone, None) == None:
             return False

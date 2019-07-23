@@ -9,7 +9,6 @@ from apps.lib import *
 from  apps import models
 import  json,datetime
 from  django.core import serializers
-
 from  django.http import QueryDict
 from django.forms.models import model_to_dict
 
@@ -17,7 +16,7 @@ from django.forms.models import model_to_dict
 
 
 
-@Valid.cookiesVerify("home.html")
+
 def  home(req):
 
      return render_to_response("home.html")
@@ -246,8 +245,5 @@ def findProject(req):
 
 def  findVarible(req):
     print("path----",req.path)
-    if  Valid.cookiesInspect(req):
-        pass
-    else:
-        pass
+
     return HttpResponse(111)
