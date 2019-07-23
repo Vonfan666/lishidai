@@ -10,9 +10,9 @@
         {% block viewPro %}
         <div class="rightListSearch">
             <div class="inp">
-                <form class="fm" action="#" method="GET">
+                <form class="fm2">
                     <div class="el-input">
-                        <input type="text" placeholder="请输入环境名称" >
+                        <input type="text" placeholder="请输入环境名称" name="vbName" >
                         <span class="active icon iconfont icon-cross "></span>
                     </div>
 
@@ -41,6 +41,7 @@
                         <div class="project-add-1-bottom">
                             <span class="project-add-1-false click-bottom">取消</span>
                             <span class="project-add-1-true click-bottom">确定</span>
+                            <span class="project-add-1-true-edit click-bottom active">确定</span>
                         </div>
                     </div>
 
@@ -68,73 +69,6 @@
 
                     </tr>
                 </thead>
-{#                <tbody>#}
-{#                    <tr>#}
-{#                        <td>1008611</td>#}
-{#                        <td>立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代立时代</td>#}
-{#                        <td>192.168.0.1</td>#}
-{#                        <td>8090</td>#}
-{#                        <td>test</td>#}
-{#                        <td>2019-07-01 23:30:59</td>#}
-{#                        <td><span>编辑</span> | <span>删除</span> |  <span>执行</span></td>#}
-{#                    </tr>#}
-{#                </tbody>#}
-{#                <tbody>#}
-{#                    <tr>#}
-{#                        <td>1008611</td>#}
-{#                        <td>立时代</td>#}
-{#                        <td>192.168.0.1</td>#}
-{#                        <td>8090</td>#}
-{#                        <td>test</td>#}
-{#                        <td>2019-07-01 23:30:59</td>#}
-{#                        <td><span>编辑</span> | <span>删除</span> |  <span>执行</span></td>#}
-{#                    </tr>#}
-{#                </tbody>#}
-{#                <tbody>#}
-{#                    <tr>#}
-{#                        <td>{{ data.list }}</td>#}
-{#                        <td>立时代</td>#}
-{#                        <td>192.168.0.1</td>#}
-{#                        <td>8090</td>#}
-{#                        <td>test</td>#}
-{#                        <td>2019-07-01 23:30:59</td>#}
-{#                        <td><span>编辑</span> | <span>删除</span> |  <span>执行</span></td>#}
-{#                    </tr>#}
-{#                </tbody>#}
-{#                <tbody>#}
-{#                    <tr>#}
-{#                        <td>1008611</td>#}
-{#                        <td>立时代</td>#}
-{#                        <td>192.168.0.1</td>#}
-{#                        <td>8090</td>#}
-{#                        <td>test</td>#}
-{#                        <td>2019-07-01 23:30:59</td>#}
-{#                        <td><span>编辑</span> | <span>删除</span> |  <span>执行</span></td>#}
-{#                    </tr>#}
-{#                </tbody>#}
-{#                <tbody>#}
-{#                    <tr>#}
-{#                        <td>1008611</td>#}
-{#                        <td>立时代</td>#}
-{#                        <td>192.168.0.1</td>#}
-{#                        <td>8090</td>#}
-{#                        <td>test</td>#}
-{#                        <td>2019-07-01 23:30:59</td>#}
-{#                        <td><span>编辑</span> | <span>删除</span> |  <span>执行</span></td>#}
-{#                    </tr>#}
-{#                </tbody>#}
-{#                <tbody>#}
-{#                    <tr>#}
-{#                        <td>1008611</td>#}
-{#                        <td>立时代</td>#}
-{#                        <td>192.168.0.1</td>#}
-{#                        <td>8090</td>#}
-{#                        <td>test</td>#}
-{#                        <td>2019-07-01 23:30:59</td>#}
-{#                        <td><span>编辑</span> | <span>删除</span> |  <span>执行</span></td>#}
-{#                    </tr>#}
-{#                </tbody>#}
-
 
             </table>
         </div>
@@ -142,23 +76,97 @@
 
 {% block script %}
 <script>
+    function numCreate(data) {
+        for (i = 0; i < data.length; i++) {
+            var tableEle = $(".rightList-table");
+            tableEle.append("<tbody></tbody>");
+            var trEle = tableEle.children("tbody").eq(i).empty().append("<tr></tr>");
+            var dic = data[i];
 
+            trEle.children("tr").eq(0).append("<td></td>").children("td").eq(0).html(dic.vbname);
+            trEle.children("tr").eq(0).append("<td></td>").children("td").eq(1).html(dic.vbkey);
+            trEle.children("tr").eq(0).append("<td></td>").children("td").eq(2).html(dic.vbaddr);
+            trEle.children("tr").eq(0).append("<td></td>").children("td").eq(3).html(dic.vbpop);
+            trEle.children("tr").eq(0).append("<td></td>").children("td").eq(4).html(dic.createtime);
+            trEle.children("tr").eq(0).append("<td></td>").children("td").eq(5).html(dic.updatetime);
+            trEle.children("tr").eq(0).append("<td></td>").children("td").eq(6).append("<span class='vbEdit'>编辑</span> | <span class='vbremove'>删除</span>")
+        }
+    }
 
 //搜索环境
-
     $(".inp-button").children().eq(0).click(function () {
+        console.log(1111);
         $.ajax({
             "url":"{% url 'findVarible' %}",
             "type":"POST",
-            "dataType":"json",
-            "data":$(".el-input input").serialize(),
+            "dataType":"JSON",
+            "data":$(".fm2").serialize(),
             success:function (arg) {
-                console.log(arg)
+                if(arg.status==200){
+                    if (arg.list.length>0){
+                            var data=arg.list;
+                            $(".rightList-table").children("tbody").remove();
+                            numCreate(data)
+                    }else {
+                        $(".rightList-table").children("tbody").remove();
+                        toast(arg.msg)
+                    }
+                }
             }
 
         })
     });
 
+    //点击搜索环境输入框一件删除按钮
+    $(".el-input").children().eq(1).click(function () {
+        $.ajax({
+            "url":"{% url 'findVarible' %}",
+            "type":"POST",
+            "dataType":"JSON",
+            "data":"",
+            success:function (arg) {
+                var data=arg.list;
+                $(".rightList-table").children("tbody").remove();
+                numCreate(data)
+
+            }
+        })
+    });
+
+    //编辑测试环境
+
+    $(".rightList-table").on("click", ".vbEdit", function () {
+        console.log($(this))
+        towPage();
+        $(".project-add-1-true").addClass("active");
+        $(".project-add-1-true-edit").removeClass("active");
+        var vbname=$(this).parents("tr").children().eq(0).html();
+        var vbkey=$(this).parents("tr").children().eq(1).html();
+        var vbattr=$(this).parents("tr").children().eq(2).html();
+
+        $(this).parents(".right").find(".fm-project-add").children().eq(0).children("input").val(vbname)
+        $(this).parents(".right").find(".fm-project-add").children().eq(1).children("input").val(vbkey)
+        $(this).parents(".right").find(".fm-project-add").children().eq(2).children("input").val(vbattr)
+
+        $(".project-add-1-true-edit").click(function () {
+            toast("接口开发中")
+            $.ajax({
+
+            })
+        })
+
+
+    })
+
+
+
+
+
+
+
+
+
+//新增测试环
     $(".project-add-1 .project-add-1-bottom").children().eq(1).click(function () {
         $.ajax({
             "url":"{% url 'addLsdvarible' %}",
@@ -169,7 +177,6 @@
                 backPop(".project-add-1");
                 toast(arg.msg);
                 console.log(arg)
-
             }
 
         })
@@ -196,7 +203,7 @@
 {#        trEle.children("tr").eq(0).append("<td>77</td>").children("td").eq(5).html(dic.updatetime);#}
 {##}
 {#        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(6).append("<span>编辑</span> | <span>删除</span> |  <span>执行</span>")#}
-
+//加载所有测试环境
         $(function () {
         $.ajax({
             "url":'{% url "lsdvarible" %}',
@@ -208,23 +215,9 @@
                    console.log(arg.list);
                     console.log(arg.list);
 
-                    var data=arg["list"];
-                    for (i=0;i<data.length;i++){
+                    var data=arg.list;
+                   numCreate(data)
 
-                        var tableEle=$(".rightList-table");
-                        tableEle.append("<tbody></tbody>");
-                        var  trEle=tableEle.children("tbody").eq(i).empty().append("<tr></tr>");
-                        var dic=data[i];
-
-                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(0).html(dic.vbname);
-                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(1).html(dic.vbkey);
-                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(2).html(dic.vbaddr);
-                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(3).html(dic.vbpop)
-                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(4).html(dic.createtime);
-                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(5).html(dic.updatetime);
-                        trEle.children("tr").eq(0).append("<td></td>").children("td").eq(6).append("<span>编辑</span> | <span>删除</span>")
-
-                }
             }
 
         }

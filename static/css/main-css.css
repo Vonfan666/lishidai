@@ -1,4 +1,8 @@
- .click-bottom{
+.rightList-table tbody tr td:last-child:hover{
+                 cursor:pointer;
+             }
+
+.click-bottom{
      padding: 9px  16px;
      border: 1px solid #545c64;
      background-color: #545c64;

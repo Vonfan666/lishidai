@@ -85,11 +85,11 @@ def lsdvarible(req):
     if req.method == "GET":
         data["status"]=200
 
-        return  render_to_response("lsdvarible.html")
+        return  render_to_response("lsdvarible.html",locals())
     else:
 
         print(req.method)
-        obj=models.lsdvarible.objects.all()
+        obj=models.lsdvarible.objects.all().order_by("createtime").reverse()
         i=0
         for  key  in obj:
             print(key.vbname,key.vbkey,key.createtime)
@@ -99,8 +99,8 @@ def lsdvarible(req):
             data["list"][i]["vbkey"] = key.vbkey
             data["list"][i]["vbaddr"] = key.vbaddr
             data["list"][i]["vbpop"] = key.vbpop
-            data["list"][i]["createtime"] = str(key.createtime).split("+")[0]
-            data["list"][i]["updatetime"] = str(key.updatetime).split("+")[0]
+            data["list"][i]["createtime"] = str(key.createtime).split(".")[0]
+            data["list"][i]["updatetime"] = str(key.updatetime).split(".")[0]
             i+=1
         print("obj",obj)
         data["status"] = 200
@@ -243,8 +243,31 @@ def findProject(req):
 
     return  HttpResponse(json.dumps(data))
 
-
+#环境搜索
 def  findVarible(req):
-    print("path----",req.path)
+    data = {
+        "msg": None,
+        "list": [],
+        "status": 200,
+    }
 
-    return HttpResponse(111)
+    vbName =req.POST.get("vbName")
+    if vbName:
+        a=models.lsdvarible.objects.filter(vbname__contains=vbName).values("vbname","vbkey","vbaddr","vbpop","createtime","updatetime").order_by("createtime").reverse()
+        print(a)
+        if a:
+            for item  in a:
+                item["createtime"]=item["createtime"].strftime("%Y-%m-%d %H:%M:%S")
+                item["updatetime"] = item["updatetime"].strftime("%Y-%m-%d %H:%M:%S")
+                print("!!!!!!!!!!!!!!!",item)
+                data["list"].append(item)
+        else:
+            data["msg"]="未搜索到关键词,请重新输入！"
+    else:
+        a=models.lsdvarible.objects.all().values("vbname","vbkey","vbaddr","vbpop","createtime","updatetime").order_by("createtime").reverse()
+        for item in a:
+            item["createtime"] = item["createtime"].strftime("%Y-%m-%d %H:%M:%S")
+            item["updatetime"] = item["updatetime"].strftime("%Y-%m-%d %H:%M:%S")
+            print("!!!!!!!!!!!!!!!", item)
+            data["list"].append(item)
+    return HttpResponse(json.dumps(data))

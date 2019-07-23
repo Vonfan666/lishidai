@@ -84,7 +84,7 @@
     }
 
 
-    //首页新增
+    //首页新增蒙层
     function towPage() {
         console.log($(".project-add").attr("value"));
         if($(".project-add").attr("value")=="0"){

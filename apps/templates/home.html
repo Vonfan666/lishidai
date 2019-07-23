@@ -269,10 +269,10 @@
     });
 
     //查看环境
-    $('.GlobleVariable').children().eq(0).click(function () {
+        $('.GlobleVariable').children().eq(0).click(function () {
                 $.ajax({
                     "url":'{% url "lsdvarible" %}',
-                    "type":"GET",
+                    "type":"POST",
                     "dataType":"JSON",
                     success:function (arg) {
                        if  (arg.status==200){
@@ -285,8 +285,6 @@
                 })
     });
     //新增项目 获取所有环境名称
-
-
     function addprojectSelectVarible() {
         $.ajax({
             "url":"{% url 'lsdvarible' %}",
@@ -316,6 +314,7 @@
 
     //点击编辑弹出蒙层--编辑
     $(".rightList-table").on("click", ".editProject", function () {
+        console.log($(this),1111)
         $(".project-add-1-false").addClass("active");
         $(".project-add-1-true").addClass("active");
         $(".project-add-1-false").removeClass("active");
