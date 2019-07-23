@@ -102,10 +102,12 @@
                 console.log(arg.errorMassage);
                 $('.error').html('提示：'+arg.errorMassage);
                 errorMessage(arg.errorMassage);
-                if (arg.status=="200"){
+                if (arg.status===200){
 {#                    window.location.reload('{% url "home" %}');#}
                     window.location.href='{% url "home" %}'
 
+                }if (arg.status===0){
+                     window.location.href='{% url "login" %}'
                 }
 
             }

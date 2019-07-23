@@ -98,42 +98,42 @@
             </div>
         </div>
         {% block varible %}
-        <div class="projectListName">
-            <p>项目列表</p>
-        </div>
+            <div class="projectListName">
+                <p>项目列表</p>
+            </div>
         {% endblock %}
         {% block viewPro %}
-        <div class="rightListSearch">
-            <div class="inp">
-                <form class="fm" action="#" method="GET">
-                    <div class="el-input">
-                        <input type="text" placeholder="请输入名称" name="proName">
-                        <span class="active icon iconfont icon-cross "></span>
-                    </div>
+            <div class="rightListSearch">
+                <div class="inp">
+                    <form class="fm" action="#" method="GET">
+                        <div class="el-input">
+                            <input type="text" placeholder="请输入名称" name="proName">
+                            <span class="active icon iconfont icon-cross "></span>
+                        </div>
 
 
-                </form>
-            </div>
-            <div class="inp-button">
-                        <input  type="button" value="搜索">
-                        <input type="button" value="新增" onclick="addprojectSelectVarible()">
-            </div>
-
-            <div class="GlobleVariable">
-
-                <input  type="button" value="查看环境">
-                <input type="button" value="新增环境">
-
-            </div>
-
-            <div class="project-add active" value="0">
-            </div>
-            <div class="project-add-1 active">
-                <div class="project-add-1-1">
+                    </form>
                 </div>
-                <div class="project-add-1-2">
+                <div class="inp-button">
+                    <input  type="button" value="搜索">
+                    <input type="button" value="新增" onclick="addprojectSelectVarible()">
+                </div>
+
+                <div class="GlobleVariable">
+
+                    <input  type="button" value="查看环境">
+                    <input type="button" value="新增环境">
+
+                </div>
+
+                <div class="project-add active" value="0">
+                </div>
+                <div class="project-add-1 active">
+                    <div class="project-add-1-1">
+                    </div>
                     <div class="project-add-1-2">
-                        <form class="fm-project-add">
+                        <div class="project-add-1-2">
+                            <form class="fm-project-add">
                                 <p>项目名称：<input type="text" placeholder="必填" name="proname"></p>
                                 <p>项目版本：<input type="text" placeholder="必填" name="proversion"></p>
                                 <p>测试环境：
@@ -145,44 +145,44 @@
                                     </select>
                                 </p>
 
-                        </form>
-                        <div class="project-add-1-bottom">
-                            <span class="project-add-1-false click-bottom">取消</span>
-                            <span class="project-add-1-true click-bottom">确定</span>
-                            <span class="project-add-1-true-edit click-bottom active">确定</span>
+                            </form>
+                            <div class="project-add-1-bottom">
+                                <span class="project-add-1-false click-bottom">取消</span>
+                                <span class="project-add-1-true click-bottom">确定</span>
+                                <span class="project-add-1-true-edit click-bottom active">确定</span>
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
-            <div class="project-add-11 active">
-                <div class="project-add-1-1">
-                </div>
-                 <div class="project-add-1-2">
+                <div class="project-add-11 active">
+                    <div class="project-add-1-1">
+                    </div>
                     <div class="project-add-1-2">
-                        <form class="fm-project-add">
+                        <div class="project-add-1-2">
+                            <form class="fm-project-add">
                                 <p>环境名称：<input type="text" placeholder="必填" name="proName"></p>
                                 <p> key&#12288 &#12288：<input type="text" placeholder="必填 例如：url(英文别名)" name="prokey"></p>
                                 <p>环境地址：<input type="text" placeholder="必填 例：http://192.160.0.1:8080/" name="proattr"></p>
 
-                        </form>
-                        <div class="project-add-1-bottom">
-                            <span class="project-add-1-false click-bottom">取消</span>
-                            <span class="project-add-1-true click-bottom">确定</span>
-{#                            <span class="project-add-1-false-edit click-bottom active">取消</span>#}
+                            </form>
+                            <div class="project-add-1-bottom">
+                                <span class="project-add-1-false click-bottom">取消</span>
+                                <span class="project-add-1-true click-bottom">确定</span>
+                                {#                            <span class="project-add-1-false-edit click-bottom active">取消</span>#}
 
+                            </div>
                         </div>
+
                     </div>
-
                 </div>
-            </div>
 
-        </div>
+            </div>
         {% endblock %}
         {% block  lsdvarible %}
-        <div class="rightList">
-            <table class="rightList-table"  cellspacing="0"  cellpadding="0"  >
-                <thead>
+            <div class="rightList">
+                <table class="rightList-table"  cellspacing="0"  cellpadding="0"  >
+                    <thead>
                     <tr>
                         <th>项目编号</th>
                         <th>项目名称</th>
@@ -193,12 +193,12 @@
                         <th>操作</th>
 
                     </tr>
-                </thead>
+                    </thead>
 
 
 
-            </table>
-        </div>
+                </table>
+            </div>
         {% endblock %}
     </div>
 </div>
@@ -216,84 +216,92 @@
 
 
     });
-{#        userSetting(".right-head-1-right",".userSetting-div")#}
-{#$(".userSetting-div").children().eq(3).click(function () {#}
-{#        console.log(2222222)#}
-{#    });#}
-$(".back-login").click(function () {
+    {#        userSetting(".right-head-1-right",".userSetting-div")#}
+    {#$(".userSetting-div").children().eq(3).click(function () {#}
+    {#        console.log(2222222)#}
+    {#    });#}
+    $(".back-login").click(function () {
 
-    $.ajax({
-        "url":"{% url 'backLogin' %}",
-        "type":"POST",
-        "dataType":"json",
-        success:function (arg) {
+        $.ajax({
+            "url":"{% url 'backLogin' %}",
+            "type":"POST",
+            "dataType":"json",
+            success:function (arg) {
 
-            if (arg.status=="200"){
+                if (arg.status=="200"){
 
-                window.location.href='{% url "login" %}'}
-        }
+                    window.location.href='{% url "login" %}'}if (arg.status===0){
+                    window.location.href='{% url "login" %}'
+                }
+            }
 
-    })
-});
+        })
+    });
 
-//点击新增弹出蒙层
-$('.inp-button').children().eq(1).click(function () {
-         towPage()
+    //点击新增弹出蒙层
+    $('.inp-button').children().eq(1).click(function () {
+        towPage()
         $(".project-add-1-true").removeClass("active");
         $(".project-add-1-true-edit").addClass("active")
-});
+    });
 
 
 
-//新增环境
-$(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
-    $.ajax({
-        "url":"{% url 'addLsdvarible' %}",
-        "type":"POST",
-        "dataType":"JSON",
-        "data":$(".project-add-11 .fm-project-add").serialize(),
-        success:function (arg) {
-            backPop(".project-add-11");
-            toast(arg.msg);
-{#            cleanToast();#}
+    //新增环境
+    $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
+        $.ajax({
+            "url":"{% url 'addLsdvarible' %}",
+            "type":"POST",
+            "dataType":"JSON",
+            "data":$(".project-add-11 .fm-project-add").serialize(),
+            success:function (arg) {
+                if (arg.status===200) {
+                    backPop(".project-add-11");
+                    toast(arg.msg);
+                    {#            cleanToast();#}
+                }if (arg.status===0){
+                    window.location.href='{% url "login" %}'
+                }
 
+            }
 
-        }
-
-    })
-});
+        })
+    });
 
     //查看环境
     $('.GlobleVariable').children().eq(0).click(function () {
-{#        $.ajax({#}
-{#            "url":'{% url "lsdvarible" %}',#}
-{#            "type":"GET",#}
-{#            "dataType":"JSON",#}
-{#            success:function (arg) {#}
-{#               if  (arg.status==200){#}
-                    window.location.href='{% url "lsdvarible" %}';
-{#                   window.open("lsdvarible.html")#}
-{##}
-{#                }#}
-{#            }#}
-{##}
-{#        })#}
+                $.ajax({
+                    "url":'{% url "lsdvarible" %}',
+                    "type":"GET",
+                    "dataType":"JSON",
+                    success:function (arg) {
+                       if  (arg.status==200){
+                            window.location.href='{% url "lsdvarible" %}';
+                        }if (arg.status===0){
+                    window.location.href='{% url "login" %}'
+                }
+                    }
+
+                })
     });
-//新增项目 获取所有环境名称
+    //新增项目 获取所有环境名称
 
 
-  function addprojectSelectVarible() {
+    function addprojectSelectVarible() {
         $.ajax({
             "url":"{% url 'lsdvarible' %}",
             "type":"POST",
             "dataType":"JSON",
-             "async" : false,
+            "async" : false,
             success:function (arg) {
-                var  data=arg.list;
-                var selectOptionCode=$('.addProjectSelect');
-                selectOptionCode.append(' <option value="0" selected="selected">请选择测试环境</option>');
-                for  (i=0;i<data.length;i++){
-                    selectOptionCode.append("<option class='option'></option>").children().eq(i+1).html(data[i].vbname).val(data[i].id)
+                if (arg.status===200)
+                {var  data=arg.list;
+                    var selectOptionCode=$('.addProjectSelect');
+                    selectOptionCode.append(' <option value="0" selected="selected">请选择测试环境</option>');
+                    for  (i=0;i<data.length;i++){
+                        selectOptionCode.append("<option class='option'></option>").children().eq(i+1).html(data[i].vbname).val(data[i].id)
+                    }}if (arg.status===0){
+                    window.location.href='{% url "login" %}'
                 }
 
 
@@ -361,10 +369,13 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
 
                             {#                    window.location.href="{% url 'home' %}";#}
                             setTimeout(200);
-{#                            cleanToast();#}
+                            {#                            cleanToast();#}
                             window.location.href = "{% url 'home' %}"
                         } else {
-                            toast(arg.msg);
+                            if (arg.status===0){
+                                window.location.href='{% url "login" %}'
+                            }else {
+                                toast(arg.msg);}
 
                         }
                     }
@@ -379,22 +390,24 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
     //删除
     $(".rightList-table").on("click",".cleanProject",function () {
         var proCode = $(this).parent().siblings().eq(0).text();
-{#        $(this).parents("tbody").remove()#}
+        {#        $(this).parents("tbody").remove()#}
         data={};
         data.proCode=proCode;
         var ele=$(this);
         $.ajax( {
-                "url":"{% url 'clearProject' %}",
-                "type":"POST",
-                "dataType":"JSON",
-                "data":data,
-                success:function (arg) {
-                    if (arg.status==200){
-                        ele.parents("tbody").remove();
-                        toast(arg.msg);
+            "url":"{% url 'clearProject' %}",
+            "type":"POST",
+            "dataType":"JSON",
+            "data":data,
+            success:function (arg) {
+                if (arg.status==200){
+                    ele.parents("tbody").remove();
+                    toast(arg.msg);
 
-                    }
+                }if (arg.status===0){
+                    window.location.href='{% url "login" %}'
                 }
+            }
 
 
 
@@ -403,34 +416,34 @@ $(".project-add-11 .project-add-1-bottom").children().eq(1).click(function () {
 
 
 
-function addCreateEleFirst(data,i) {
-     var tableEle=$(".rightList-table");
-                    tableEle.prepend("<tbody></tbody>").children("tbody").eq(i).empty().append("<tr></tr>");
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(0).html(data[i].procode);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(1).html(data[i].proname);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(2).html(data[i].proversion);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td class='active'>111</td>").children().eq(3).html(data[i].provaronemany_id);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(4).html(data[i].provaronemany_id__vbname);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(5).html(data[i].provarmaymany__phone);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(6).html(data[i].updatetime);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(7).html("<span class='editProject'>编辑</span> | <span class='cleanProject'>删除</span> |  <span class='runProject'>执行</span> |  <span class='lookResult'>结果</span>");
-}
+    function addCreateEleFirst(data,i) {
+        var tableEle=$(".rightList-table");
+        tableEle.prepend("<tbody></tbody>").children("tbody").eq(i).empty().append("<tr></tr>");
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(0).html(data[i].procode);
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(1).html(data[i].proname);
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(2).html(data[i].proversion);
+        tableEle.children("tbody").eq(i).children("tr").append("<td class='active'>111</td>").children().eq(3).html(data[i].provaronemany_id);
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(4).html(data[i].provaronemany_id__vbname);
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(5).html(data[i].provarmaymany__phone);
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(6).html(data[i].updatetime);
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(7).html("<span class='editProject'>编辑</span> | <span class='cleanProject'>删除</span> |  <span class='runProject'>执行</span> |  <span class='lookResult'>结果</span>");
+    }
 
 
 
-function createEle(data,i) {
-     var tableEle=$(".rightList-table");
-                    tableEle.append("<tbody></tbody>").children("tbody").eq(i).empty().append("<tr></tr>");
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(0).html(data[i].procode);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(1).html(data[i].proname);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(2).html(data[i].proversion);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td class='active'>111</td>").children().eq(3).html(data[i].provaronemany_id
-);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(4).html(data[i].provaronemany_id__vbname);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(5).html(data[i].provarmaymany__phone);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(6).html(data[i].updatetime);
-                    tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(7).html("<span class='editProject'>编辑</span> | <span class='cleanProject'>删除</span> |  <span class='runProject'>执行</span> |  <span class='lookResult'>结果</span>");
-}
+    function createEle(data,i) {
+        var tableEle=$(".rightList-table");
+        tableEle.append("<tbody></tbody>").children("tbody").eq(i).empty().append("<tr></tr>");
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(0).html(data[i].procode);
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(1).html(data[i].proname);
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(2).html(data[i].proversion);
+        tableEle.children("tbody").eq(i).children("tr").append("<td class='active'>111</td>").children().eq(3).html(data[i].provaronemany_id
+        );
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(4).html(data[i].provaronemany_id__vbname);
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(5).html(data[i].provarmaymany__phone);
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(6).html(data[i].updatetime);
+        tableEle.children("tbody").eq(i).children("tr").append("<td></td>").children().eq(7).html("<span class='editProject'>编辑</span> | <span class='cleanProject'>删除</span> |  <span class='runProject'>执行</span> |  <span class='lookResult'>结果</span>");
+    }
 
 
     //查看环境
@@ -439,123 +452,137 @@ function createEle(data,i) {
     {% block lookproject %}
 
 
-    $(".project-add-1 .project-add-1-true").click(function () {
-        var selectOptionCode=$('.project-add-1 .fm-project-add');
+        $(".project-add-1 .project-add-1-true").click(function () {
+            var selectOptionCode=$('.project-add-1 .fm-project-add');
             addEditUpdateCleanProject(selectOptionCode)
-    });
+        });
 
-//新增
-    function addEditUpdateCleanProject(ele) {
-             $.ajax({
-            "url":"{% url 'addProject' %}",
-            "type":"POST",
-            "dataType":"JSON",
+        //新增
+        function addEditUpdateCleanProject(ele) {
+            $.ajax({
+                "url":"{% url 'addProject' %}",
+                "type":"POST",
+                "dataType":"JSON",
 
-            "data":ele.serialize(),
-            success:function (arg) {
+                "data":ele.serialize(),
+                success:function (arg) {
 
-                if (arg.status==200){
-                    backPop(".project-add-1");
+                    if (arg.status==200){
+                        backPop(".project-add-1");
 
 
-{#                    window.location.href="{% url 'home' %}";#}
-                    setTimeout(200);
-                    toast(arg.msg);
+                        {#                    window.location.href="{% url 'home' %}";#}
+                        setTimeout(200);
+                        toast(arg.msg);
 
-                    addCreateEleFirst(arg.list,0);
+                        addCreateEleFirst(arg.list,0);
 
-{#                    cleanToast();#}
-                }else {
-                     toast(arg.msg);
-{#                    cleanToast();#}
+                        {#                    cleanToast();#}
+                    }else {
+                        if (arg.status===0){
+                            window.location.href='{% url "login" %}'
+                        }else {
+                            toast(arg.msg);
+                            {#                    cleanToast();#}
+                        }}
                 }
-            }
-        })}
+            })}
 
 
 
 
 
 
-lookproject();
-function lookproject() {
-    $.ajax({
-        "url":"{% url 'lookproject' %}",
-        "type":"POST",
-        "dataType":"JSON",
-        success:function (arg) {
-            if (arg.status==200){
-                data=arg.list;
-                for (i=0;i<data.length;i++){
-                   createEle(data,i);
+        lookproject();
+        function lookproject() {
+            $.ajax({
+                "url":"{% url 'lookproject' %}",
+                "type":"POST",
+                "dataType":"JSON",
+                success:function (arg) {
+                    if (arg.status==200){
+                        data=arg.list;
+                        for (i=0;i<data.length;i++){
+                            createEle(data,i);
 
+                        }
+
+                    }else {
+                        if (arg.status===0){
+                            window.location.href='{% url "login" %}'
+                        }else {
+                            toast("加载异常……");
+                        }}
                 }
-
-            }else {
-                toast("加载异常……");
-            }
+            })
         }
-    })
-}
 
 
-$(".rightListSearch .inp-button").children().eq(0).click(function () {
-    $.ajax({
-        "url":"{% url 'findProject' %}",
-        "type":"POST",
-        "dataType":"JSON",
-        "data":$(".fm").serialize(),
-        success:function (arg) {
-            data = arg.list;
-            if (data.length == 0) {
-                var tableEle = $(".rightList-table");
-                tableEle.children("tbody").empty()
+        $(".rightListSearch .inp-button").children().eq(0).click(function () {
+            $.ajax({
+                "url":"{% url 'findProject' %}",
+                "type":"POST",
+                "dataType":"JSON",
+                "data":$(".fm").serialize(),
+                success:function (arg) {
+                    if (arg.status===200) {
+                        data = arg.list;
+                        if (data.length == 0) {
+                            var tableEle = $(".rightList-table");
+                            tableEle.children("tbody").empty()
 
-            } else{
-                    var tableEle = $(".rightList-table");
-                    tableEle.children("tbody").empty();
-                for (i = 0; i < data.length; i++) {
-                        createEle(data, i);
+                        } else {
+                            var tableEle = $(".rightList-table");
+                            tableEle.children("tbody").empty();
+                            for (i = 0; i < data.length; i++) {
+                                createEle(data, i);
 
+                            }
+                        }
+                    }if (arg.status===0){
+                     window.location.href='{% url "login" %}'
                 }
-        }
-        }
-    })
+                }
+            })
 
-});
+        });
 
         $(".el-input").children("span").eq(0).click(function () {
             $.ajax({
-        "url":"{% url 'findProject' %}",
-        "type":"POST",
-        "dataType":"JSON",
-        "data":"",
-        success:function (arg) {
-            data = arg.list;
-            if (data.length == 0) {
-                var tableEle = $(".rightList-table");
-                tableEle.children("tbody").empty()
+                "url":"{% url 'findProject' %}",
+                "type":"POST",
+                "dataType":"JSON",
+                "data":"",
+                success:function (arg) {
+                    if (arg.status==200)
+                    {data = arg.list;
+                    if (data.length == 0) {
+                        var tableEle = $(".rightList-table");
+                        tableEle.children("tbody").empty()
 
-            } else{
-                    var tableEle = $(".rightList-table");
-                    tableEle.children("tbody").empty();
-                for (i = 0; i < data.length; i++) {
+                    } else{
+                        var tableEle = $(".rightList-table");
+                        tableEle.children("tbody").empty();
+                        for (i = 0; i < data.length; i++) {
 
-                        createEle(data, i);
+                            createEle(data, i);
+                        }
+                    }
+                }if (arg.status===0){
+                     window.location.href='{% url "login" %}'
                 }
-        }
-        }
-    })
+                }
+            })
         });
 
     {% endblock %}
 
 
 
-$(".left-all").children().eq(0).children().eq(0).children("dd").eq(0).click(function () {
-   window.location.href="{% url 'home' %}"
-}
-);
+    $(".left-all").children().eq(0).children().eq(0).children("dd").eq(0).click(function () {
+            window.location.href="{% url 'home' %}"
+        }
+    );
 
 
 
@@ -565,9 +592,9 @@ $(".left-all").children().eq(0).children().eq(0).children("dd").eq(0).click(func
 
 {% block script %}
     <script>
-            $(".left-one").eq(0).children().eq(0).children("dd").eq(0).css("background-color", "#434a50");
-            $(".left-one").eq(0).siblings().css("background-color","#545c64");
-            openEle(0);
+        $(".left-one").eq(0).children().eq(0).children("dd").eq(0).css("background-color", "#434a50");
+        $(".left-one").eq(0).siblings().css("background-color","#545c64");
+        openEle(0);
 
     </script>
 

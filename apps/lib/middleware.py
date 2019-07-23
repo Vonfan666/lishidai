@@ -1,11 +1,12 @@
 from  django.shortcuts import render,HttpResponse,redirect,render_to_response
 from  django.utils.deprecation import MiddlewareMixin
-import  re
+import  re,json
 
 
 class MyMiddleware(MiddlewareMixin):
     print(11111)
     def process_request(self,request):
+        data={}
         print("执行过滤器--------------1")
         self.request = request
         self.noIncludedPath = ["/apps/login/", '/apps/backLogin/']
@@ -20,20 +21,15 @@ class MyMiddleware(MiddlewareMixin):
             else:
                 if self.request.COOKIES.get("phone", None) == None:
                     print("执行过滤器--------------2")
-                    return render_to_response("login.html")
+                    data["status"]=0
+                    return HttpResponse(json.dumps(data))
                 if self.request.session.get("phone", None) == None:
                     print("执行过滤器--------------3")
-                    return render_to_response("login.html")
+                    data["status"] = 0
+                    return HttpResponse(json.dumps(data))
                 if self.request.COOKIES.get("phone") == self.request.session["phone"] and self.request.COOKIES.get("pwd") == self.request.session["pwd"]:
                     print("执行过滤器--------------4")
-                    return True
-    # def process_view(self,request):
-    #     pass
-    #
-    # def process_exception(self,request):
-    #     pass
-    #
-    # def process_response(self,request):
-    #     pass
-
+                else:
+                        return HttpResponse(json.dumps({"status": 0}))
+                return
 

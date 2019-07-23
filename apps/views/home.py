@@ -45,32 +45,32 @@ def  addLsdvarible(req):
     # print(req.POST)
     #
     # print(model_to_dict(req.POST))
-    if Valid.cookiesInspect(req):  #重新写一个装饰器
+    # if Valid.cookiesInspect(req):  #重新写一个装饰器
 
-        proName=req.POST.get("proName")
-        prokey=req.POST.get("prokey")
-        proattr=req.POST.get("proattr")
-        vbpop=req.session["phone"]
-        createtime=datetime.datetime.now()
-        print(createtime,type(createtime))
+    proName=req.POST.get("proName")
+    prokey=req.POST.get("prokey")
+    proattr=req.POST.get("proattr")
+    vbpop=req.session["phone"]
+    createtime=datetime.datetime.now()
+    print(createtime,type(createtime))
 
-        print("++++++",proName,prokey,proattr,vbpop,createtime,)
-        models.lsdvarible.objects.create(
-                                            vbname=proName,
-                                            vbkey=prokey,
-                                            vbaddr=proattr,
-                                            vbpop=vbpop,
-                                            createtime=createtime,
-                                            updatetime=createtime,
+    print("++++++",proName,prokey,proattr,vbpop,createtime,)
+    models.lsdvarible.objects.create(
+                                        vbname=proName,
+                                        vbkey=prokey,
+                                        vbaddr=proattr,
+                                        vbpop=vbpop,
+                                        createtime=createtime,
+                                        updatetime=createtime,
 
-                                             )
+                                         )
 
 
-        data["status"] = 200
-        data["msg"] = "操作成功"
-        return HttpResponse(json.dumps(data))
-    else:
-        return render_to_response("login.html")
+    data["status"] = 200
+    data["msg"] = "操作成功"
+    return HttpResponse(json.dumps(data))
+    # else:
+    #     return render_to_response("login.html")
 
 def lsdvarible(req):
     '''查看环境列表'''
@@ -80,34 +80,35 @@ def lsdvarible(req):
         ]
 
     }
-    if Valid.cookiesInspect(req):
-        print(req.POST)
-        if req.method == "GET":
+# if Valid.cookiesInspect(req):
+    print(req.POST)
+    if req.method == "GET":
+        data["status"]=200
 
-            return  render_to_response("lsdvarible.html")
-        else:
-
-            print(req.method)
-            obj=models.lsdvarible.objects.all()
-            i=0
-            for  key  in obj:
-                print(key.vbname,key.vbkey,key.createtime)
-                print(data["list"].append({}))
-                data["list"][i]["id"] = key.id
-                data["list"][i]["vbname"]=key.vbname
-                data["list"][i]["vbkey"] = key.vbkey
-                data["list"][i]["vbaddr"] = key.vbaddr
-                data["list"][i]["vbpop"] = key.vbpop
-                data["list"][i]["createtime"] = str(key.createtime).split("+")[0]
-                data["list"][i]["updatetime"] = str(key.updatetime).split("+")[0]
-                i+=1
-            print("obj",obj)
-            data["status"] = 200
-            data["msg"] = "操作成功"
-
-            return HttpResponse(json.dumps(data))
+        return  render_to_response("lsdvarible.html")
     else:
-        return render_to_response("login.html")
+
+        print(req.method)
+        obj=models.lsdvarible.objects.all()
+        i=0
+        for  key  in obj:
+            print(key.vbname,key.vbkey,key.createtime)
+            print(data["list"].append({}))
+            data["list"][i]["id"] = key.id
+            data["list"][i]["vbname"]=key.vbname
+            data["list"][i]["vbkey"] = key.vbkey
+            data["list"][i]["vbaddr"] = key.vbaddr
+            data["list"][i]["vbpop"] = key.vbpop
+            data["list"][i]["createtime"] = str(key.createtime).split("+")[0]
+            data["list"][i]["updatetime"] = str(key.updatetime).split("+")[0]
+            i+=1
+        print("obj",obj)
+        data["status"] = 200
+        data["msg"] = "操作成功"
+
+        return HttpResponse(json.dumps(data))
+# else:
+#     return render_to_response("login.html")
 #新增项目
 def addProject(req):
     print("!!!!!!!!!!!!!!!!!")
@@ -123,7 +124,7 @@ def addProject(req):
         data["msg"] = "请选择环境"
         return HttpResponse(json.dumps(data))
 
-    elif  Valid.cookiesInspect:
+    else:
         datacode=req.POST
         datacode=datacode.dict()
         datacode["procode"]=mymethod.proId()
@@ -141,8 +142,8 @@ def addProject(req):
         data["status"]=200
         data["msg"]="添加成功"
         return HttpResponse(json.dumps(data))
-    else:
-        return render_to_response("login.html")
+    # else:
+    #     return render_to_response("login.html")
 #编辑项目
 def editProject(req):
     print("_________________",req.POST)
@@ -152,20 +153,20 @@ def editProject(req):
         "status":None
     }
 
-    if Valid.cookiesInspect(req):
-        proCode=req.POST.get("proCode")
-        proName=req.POST.get("proname")
-        proversion=req.POST.get("proversion")
-        provarible=req.POST.get("provarible")
+    # if Valid.cookiesInspect(req):
+    proCode=req.POST.get("proCode")
+    proName=req.POST.get("proname")
+    proversion=req.POST.get("proversion")
+    provarible=req.POST.get("provarible")
 
-        print(proCode,proversion,proName)
-        if proName is None or proversion is None or provarible is None or provarible is "0" :
-            data["msg"]="输入不能为空"
-        else:
-            models.lsdproject.objects.filter(procode=proCode).update(proname=proName,proversion=proversion,provaronemany_id=provarible)
-            data["msg"]="修改成功"
-            data["status"] = 200
-    else:return render_to_response("login.html")
+    print(proCode,proversion,proName)
+    if proName is None or proversion is None or provarible is None or provarible is "0" :
+        data["msg"]="输入不能为空"
+    else:
+        models.lsdproject.objects.filter(procode=proCode).update(proname=proName,proversion=proversion,provaronemany_id=provarible)
+        data["msg"]="修改成功"
+        data["status"] = 200
+    # else:return render_to_response("login.html")
     return HttpResponse(json.dumps(data))
 #删除项目
 def clearProject(req):
@@ -192,19 +193,19 @@ def lookproject(req):
         ]
 
     }
-    if  Valid.cookiesInspect(req):
-        datacode = models.lsdproject.objects.all().values("procode", "proname", "proversion","provaronemany_id__vbname",
-                                                          "provarmaymany__phone","updatetime","provaronemany_id").order_by("updatetime").reverse()
-        for a in datacode:
-            print(a["updatetime"])
-            a["updatetime"]=str(a["updatetime"]).split("+")[0]
-            data["list"].append(a)
-        data["status"] = 200
-        data["msg"] = "添加成功"
+    # if  Valid.cookiesInspect(req):
+    datacode = models.lsdproject.objects.all().values("procode", "proname", "proversion","provaronemany_id__vbname",
+                                                      "provarmaymany__phone","updatetime","provaronemany_id").order_by("updatetime").reverse()
+    for a in datacode:
+        print(a["updatetime"])
+        a["updatetime"]=str(a["updatetime"]).split("+")[0]
+        data["list"].append(a)
+    data["status"] = 200
+    data["msg"] = "添加成功"
 
-        return HttpResponse(json.dumps(data))
-    else:
-        return render_to_response("login.html")
+    return HttpResponse(json.dumps(data))
+    # else:
+    #     return render_to_response("login.html")
 #搜索项目名称
 def findProject(req):
     data={
