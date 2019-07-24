@@ -100,8 +100,8 @@ def lsdvarible(req):
             data["list"][i]["vbkey"] = key.vbkey
             data["list"][i]["vbaddr"] = key.vbaddr
             data["list"][i]["vbpop"] = key.vbpop
-            data["list"][i]["createtime"] = str(key.createtime).split(".")[0]
-            data["list"][i]["updatetime"] = str(key.updatetime).split(".")[0]
+            data["list"][i]["createtime"] = str(key.createtime).split("+")[0]
+            data["list"][i]["updatetime"] = str(key.updatetime).split("+")[0]
             i+=1
         print("obj",obj)
         data["status"] = 200
