@@ -468,8 +468,6 @@
 
                     if (arg.status==200){
                         backPop(".project-add-1");
-
-
                         {#                    window.location.href="{% url 'home' %}";#}
                         setTimeout(200);
                         toast(arg.msg);
@@ -526,9 +524,11 @@
                 success:function (arg) {
                     if (arg.status===200) {
                         data = arg.list;
-                        if (data.length == 0) {
+                        if (data.length == 0||data.length==null) {
                             var tableEle = $(".rightList-table");
-                            tableEle.children("tbody").empty()
+                            tableEle.children("tbody").empty();
+                            console.log("弹出toast");
+                            toast(arg.msg)
 
                         } else {
                             var tableEle = $(".rightList-table");

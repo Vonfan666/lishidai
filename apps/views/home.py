@@ -19,6 +19,7 @@ from django.forms.models import model_to_dict
 
 def  home(req):
 
+
      return render_to_response("home.html")
 def backLogin(req):
 
@@ -219,7 +220,7 @@ def findProject(req):
         print("ttttttttttttttt",bool(t))
         res = models.lsdproject.objects.filter(proname__contains=t).values("procode","proname","proversion","provaronemany_id__vbname","provarmaymany__phone","updatetime").order_by("updatetime").reverse()
         print("_______________",res)
-        print(bool(res))
+        print(bool(res),"bool")
         if res:
             for dic in res:
                 dic["updatetime"] = dic["updatetime"].strftime("%Y-%m-%d %H:%M:%S")
@@ -228,19 +229,14 @@ def findProject(req):
             data["msg"]="未搜索到关键词,请重新输入！"
     else:
         res = models.lsdproject.objects.all().values("procode","proname","proversion","provaronemany_id__vbname","provarmaymany__phone","updatetime").order_by("updatetime").reverse()
-        for dic in  res:
-            dic["updatetime"]=dic["updatetime"].strftime("%Y-%m-%d %H:%M:%S")
-            data["list"].append(dic)
-
-        # print(serializers.serialize('json', res))
-        # # data["list"]=(json.loads(serializers.serialize('json',res)))
-        print(data)
+        if res:
+            for dic in  res:
+                dic["updatetime"]=dic["updatetime"].strftime("%Y-%m-%d %H:%M:%S")
+                data["list"].append(dic)
+        else:
+            data["msg"]="未发现项目,请先添加项目!"
 
     data["status"]=200
-
-
-
-
     return  HttpResponse(json.dumps(data))
 
 #环境搜索

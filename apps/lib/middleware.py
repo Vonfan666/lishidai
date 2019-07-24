@@ -20,16 +20,28 @@ class MyMiddleware(MiddlewareMixin):
                 return
             else:
                 if self.request.COOKIES.get("phone", None) == None:
-                    print("执行过滤器--------------2")
-                    data["status"]=0
-                    return HttpResponse(json.dumps(data))
+                    if self.request.method=="GET":
+                        return render_to_response("login.html")
+                    else:
+                        print("执行过滤器--------------2")
+                        data["status"]=0
+                        return HttpResponse(json.dumps(data))
                 if self.request.session.get("phone", None) == None:
-                    print("执行过滤器--------------3")
-                    data["status"] = 0
-                    return HttpResponse(json.dumps(data))
+                    if self.request.method=="GET":
+                        return render_to_response("login.html")
+                    else:
+                        print("执行过滤器--------------3")
+                        data["status"]=0
+                        return HttpResponse(json.dumps(data))
                 if self.request.COOKIES.get("phone") == self.request.session["phone"] and self.request.COOKIES.get("pwd") == self.request.session["pwd"]:
                     print("执行过滤器--------------4")
+                    return
                 else:
-                        return HttpResponse(json.dumps({"status": 0}))
-                return
+                        if self.request.method=="GET":
+
+                            return render_to_response("login.html")
+                        else:
+                            data["status"] = 0
+                            return HttpResponse(json.dumps(data))
+
 
