@@ -46,7 +46,9 @@ class InvalidSession():
         else:
             return False
     def cookiesVerify(self,*args):
+        a = self.phone
         def invalidLogin(func):
+            print(a)
             def inv(req):
                 func(req)
                 print(req.session)

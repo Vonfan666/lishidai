@@ -8,10 +8,18 @@ from django.shortcuts import render_to_response,HttpResponse,redirect
 from apps.lib import *
 from  apps import models
 import  json,datetime
+from  apps.lib.longmethod import  Pagination
+
 from  django.core import serializers
 from  django.http import QueryDict
 from django.forms.models import model_to_dict
 
+
+from  apps.log.logCof  import  logger
+
+__all__ = ["logger"]
+logger=logger(__name__)
+logger.info(1231)
 
 
 
@@ -37,7 +45,7 @@ def backLogin(req):
     return HttpResponse(json.dumps(data))
 
 def  addLsdvarible(req):
-    print(1111111111111111111111)
+
     print(req.POST,"!!!!!!!!!!!!!!!!!!!!")
     '''新增环境'''
     data={}
@@ -112,7 +120,7 @@ def lsdvarible(req):
 #     return render_to_response("login.html")
 #新增项目
 def addProject(req):
-    print("!!!!!!!!!!!!!!!!!")
+
     print(req.POST,"!!!!!!!!!!!!")
     data = {
         "list": [
@@ -120,6 +128,7 @@ def addProject(req):
         ]
 
     }
+
     if req.POST.get("provarible")=="0":
         data["status"] = 103
         data["msg"] = "请选择环境"
@@ -194,16 +203,46 @@ def lookproject(req):
         ]
 
     }
+
+    page=int(req.POST.get("page")) #2
+    size=int(req.POST.get("size")) #10
+
+
+    logger.info("每页展示多少个：%s"%req.POST.get("size"))
     # if  Valid.cookiesInspect(req):
     datacode = models.lsdproject.objects.all().values("procode", "proname", "proversion","provaronemany_id__vbname",
                                                       "provarmaymany__phone","updatetime","provaronemany_id").order_by("updatetime").reverse()
-    for a in datacode:
+
+    logger.info(len(datacode))
+    totalCount=len(datacode)
+    nowPage=int(req.POST.get("page"))
+    onePageCount=int(req.POST.get("size"))
+
+    logger.info("datacode取值：%s"%datacode)
+
+    pag = Pagination(totalCount,nowPage,onePageCount)
+    resCount=datacode[pag.start():pag.end()]
+
+
+    logger.info("切割后的返回值：%s"%resCount)
+
+
+    for a in resCount:
         print(a["updatetime"])
         a["updatetime"]=str(a["updatetime"]).split("+")[0]
         data["list"].append(a)
+    print(data)
     data["status"] = 200
-    data["msg"] = "添加成功"
+    data["nowPage"]= nowPage
 
+    # data["headPage"]=list(pag.onlySedPage())[0]
+    data["allPage"]=list(pag.onlySedPage())
+    data["allPageCount"]=pag.allPage()
+    # if  data["headPage"]==data["footPage"]:
+    #     data.pop("footPage")
+
+    data["msg"] = "添加成功"
+    print("data")
     return HttpResponse(json.dumps(data))
     # else:
     #     return render_to_response("login.html")
