@@ -574,7 +574,7 @@ function lookproject1(page) {
                 "page": page,
                 "size": 10
             };
-            console.log(data);
+            console.log(99999999);
             $.ajax({
                 "url":"{% url 'lookproject' %}",
                 "type":"POST",
@@ -584,6 +584,7 @@ function lookproject1(page) {
                     console.log("cao");
                     if (arg.status==200){
                         data=arg.list;
+                        console.log(3290381239289238);
                         for (i=0;i<data.length;i++){
                             createEle(data,i);
                         }
